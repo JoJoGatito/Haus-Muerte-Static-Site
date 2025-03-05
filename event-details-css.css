@@ -1,0 +1,313 @@
+/* 
+   Event Details Page Styles for Event Platform
+   Contains styles for single event pages
+*/
+
+/* Event Banner */
+.event-banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-light);
+    padding: var(--spacing-xxl) 0 var(--spacing-xl);
+    position: relative;
+}
+
+.event-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%);
+    z-index: 1;
+}
+
+.event-banner .container {
+    position: relative;
+    z-index: 2;
+}
+
+.event-badge {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.event-banner h1 {
+    color: var(--text-light);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    max-width: 800px;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md) var(--spacing-xl);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.meta-item i {
+    margin-right: var(--spacing-xs);
+    opacity: 0.8;
+}
+
+/* Event Content Layout */
+.event-content {
+    padding: var(--spacing-xl) 0;
+}
+
+.event-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-xl);
+}
+
+.event-main > div {
+    margin-bottom: var(--spacing-xl);
+}
+
+.event-main h2, .event-sidebar h2, .event-sidebar h3 {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Event Description */
+.event-description {
+    line-height: 1.7;
+}
+
+.event-description p, .event-description ul, .event-description ol {
+    margin-bottom: var(--spacing-md);
+}
+
+.event-description img {
+    border-radius: var(--border-radius-md);
+    margin: var(--spacing-md) 0;
+}
+
+/* Event Performers */
+.performers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.performer-card {
+    text-align: center;
+}
+
+.performer-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto var(--spacing-sm);
+    border: 3px solid var(--primary-light);
+}
+
+.performer-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.performer-role {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Event Schedule */
+.schedule-item {
+    display: flex;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-time {
+    width: 100px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.schedule-content {
+    flex: 1;
+}
+
+.schedule-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.schedule-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Tickets Widget */
+.tickets-widget {
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Share Buttons */
+.event-share {
+    margin-bottom: var(--spacing-lg);
+}
+
+.share-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--background-alt);
+    color: var(--text-dark);
+    transition: all var(--transition-fast);
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+}
+
+.share-btn.facebook:hover { background-color: #3b5998; color: white; }
+.share-btn.twitter:hover { background-color: #1da1f2; color: white; }
+.share-btn.email:hover { background-color: #ea4335; color: white; }
+.share-btn.copy:hover { background-color: #333; color: white; }
+
+/* Venue Information */
+.venue-info {
+    margin-bottom: var(--spacing-lg);
+}
+
+.venue-map {
+    height: 200px;
+    background-color: var(--background-alt);
+    border-radius: var(--border-radius-md);
+    margin-top: var(--spacing-sm);
+    overflow: hidden;
+}
+
+.venue-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.venue-address {
+    margin-bottom: var(--spacing-xs);
+}
+
+.venue-details p {
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.venue-details i {
+    margin-right: var(--spacing-xs);
+    color: var(--text-muted);
+}
+
+/* Related Events */
+.related-events {
+    background-color: var(--background-alt);
+    padding: var(--spacing-xl) 0;
+}
+
+/* Pretix Widget Customizations */
+.pretix-widget {
+    font-family: var(--font-body) !important;
+}
+
+.pretix-widget .pretix-widget-item-price {
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+}
+
+.pretix-widget .pretix-widget-btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.pretix-widget .pretix-widget-btn-primary:hover {
+    background-color: var(--primary-dark) !important;
+    border-color: var(--primary-dark) !important;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .event-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-sidebar {
+        order: -1;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .tickets-widget {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-banner h1 {
+        font-size: 2rem;
+    }
+    
+    .meta-item {
+        font-size: 1rem;
+    }
+    
+    .performers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .schedule-item {
+        flex-direction: column;
+    }
+    
+    .schedule-time {
+        width: auto;
+        margin-bottom: var(--spacing-xs);
+    }
+}
+
+@media (max-width: 576px) {
+    .event-banner {
+        padding: var(--spacing-xl) 0 var(--spacing-lg);
+    }
+    
+    .event-banner h1 {
+        font-size: 1.75rem;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}

@@ -1,0 +1,143 @@
+/* 
+   Events Page Styles for Event Platform
+   Contains styles for events listing page
+*/
+
+.events-hero {
+    background-image: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    color: var(--text-light);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.events-hero h1 {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.events-hero p {
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Events Filters Section */
+.events-filters {
+    background-color: var(--background-alt);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.filter-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.filter-group select, .filter-group input {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 12px;
+    background-color: var(--background-light);
+    min-width: 180px;
+    font-family: var(--font-body);
+}
+
+.filter-group input {
+    min-width: 240px;
+}
+
+/* Events Listing Section */
+.events-listing {
+    padding: var(--spacing-xl) 0;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.pagination {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+#no-events-message {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    color: var(--text-muted);
+}
+
+#no-events-message p {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Extended Event Card styles for events page */
+.event-card-badges {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.event-badge {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+}
+
+.event-badge.featured {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+}
+
+.event-badge.sold-out {
+    background-color: var(--error-color);
+}
+
+.event-badge.few-tickets {
+    background-color: var(--warning-color);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .filter-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-group select, .filter-group input {
+        width: 100%;
+    }
+    
+    .events-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}

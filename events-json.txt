@@ -1,0 +1,435 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Summer Jazz Festival",
+      "slug": "summer-jazz-festival",
+      "category": "Music",
+      "date": "2025-06-15",
+      "startTime": "18:00",
+      "endTime": "23:00",
+      "location": "Central Park Amphitheater",
+      "shortDescription": "A night of smooth jazz under the stars featuring acclaimed artists and local talent.",
+      "description": "<p>Join us for a magical evening of jazz under the stars at Central Park Amphitheater. The Summer Jazz Festival brings together acclaimed artists and talented local musicians for an unforgettable musical experience.</p><p>From smooth jazz to fusion and everything in between, this festival celebrates the rich diversity of jazz music. Bring a blanket, grab some food from our vendors, and enjoy the ambiance as the sun sets and the music fills the night air.</p><h3>What to Expect</h3><ul><li>Multiple stages with continuous performances</li><li>Food and drink vendors with specialty offerings</li><li>VIP seating area with premium view</li><li>Meet and greet with selected artists</li></ul>",
+      "image": "/assets/images/events/jazz-festival.jpg",
+      "bannerImage": "/assets/images/events/jazz-festival-banner.jpg",
+      "price": 45,
+      "featured": true,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "summer-jazz-2025"
+      },
+      "performers": [
+        {
+          "name": "Elena Rodriguez Quartet",
+          "role": "Headliner",
+          "image": "/assets/images/performers/elena-rodriguez.jpg"
+        },
+        {
+          "name": "Marcus Green",
+          "role": "Featured Artist",
+          "image": "/assets/images/performers/marcus-green.jpg"
+        },
+        {
+          "name": "Bluewave Collective",
+          "role": "Opening Act",
+          "image": "/assets/images/performers/bluewave.jpg"
+        },
+        {
+          "name": "Sophia Chen",
+          "role": "Special Guest",
+          "image": "/assets/images/performers/sophia-chen.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "18:00",
+          "title": "Gates Open",
+          "description": "Food vendors and pre-show entertainment"
+        },
+        {
+          "time": "19:00",
+          "title": "Bluewave Collective",
+          "description": "Opening performance on the main stage"
+        },
+        {
+          "time": "20:00",
+          "title": "Sophia Chen",
+          "description": "Special guest performance"
+        },
+        {
+          "time": "21:00",
+          "title": "Marcus Green",
+          "description": "Featured artist set"
+        },
+        {
+          "time": "22:00",
+          "title": "Elena Rodriguez Quartet",
+          "description": "Headliner performance"
+        }
+      ],
+      "venue": {
+        "name": "Central Park Amphitheater",
+        "address": "123 Park Avenue, City, State 12345",
+        "phone": "(555) 123-4567",
+        "website": "https://www.centralparkamphitheater.com",
+        "websiteLabel": "centralparkamphitheater.com"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Comedy Night Spectacular",
+      "slug": "comedy-night-spectacular",
+      "category": "Comedy",
+      "date": "2025-05-22",
+      "startTime": "20:00",
+      "endTime": "22:30",
+      "location": "The Laugh Factory",
+      "shortDescription": "An evening of non-stop laughter with five of the funniest comedians in the country.",
+      "description": "<p>Get ready for a side-splitting evening at The Laugh Factory with our Comedy Night Spectacular! We've gathered five of the funniest comedians in the country to bring you hours of entertainment and non-stop laughter.</p><p>From observational humor to hilarious anecdotes and clever one-liners, our diverse lineup of comedians brings different styles and perspectives to the stage. This adults-only show is the perfect night out with friends or a date night with your special someone.</p><h3>About the Venue</h3><p>The Laugh Factory offers an intimate setting with great acoustics and visibility from every seat. Full bar service is available before and during the show, with a two-drink minimum per person.</p>",
+      "image": "/assets/images/events/comedy-night.jpg",
+      "bannerImage": "/assets/images/events/comedy-night-banner.jpg",
+      "price": 35,
+      "featured": true,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "comedy-night-may-2025"
+      },
+      "performers": [
+        {
+          "name": "Jessica Williams",
+          "role": "Headliner",
+          "image": "/assets/images/performers/jessica-williams.jpg"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "Featured Comedian",
+          "image": "/assets/images/performers/dave-johnson.jpg"
+        },
+        {
+          "name": "Raj Patel",
+          "role": "Featured Comedian",
+          "image": "/assets/images/performers/raj-patel.jpg"
+        },
+        {
+          "name": "Sarah Thompson",
+          "role": "MC",
+          "image": "/assets/images/performers/sarah-thompson.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "19:00",
+          "title": "Doors Open",
+          "description": "Bar service begins"
+        },
+        {
+          "time": "20:00",
+          "title": "Show Begins - Sarah Thompson",
+          "description": "MC and opening jokes"
+        },
+        {
+          "time": "20:15",
+          "title": "First Act - Local Comedian",
+          "description": "15-minute set"
+        },
+        {
+          "time": "20:30",
+          "title": "Raj Patel",
+          "description": "30-minute set"
+        },
+        {
+          "time": "21:00",
+          "title": "Intermission",
+          "description": "15-minute break"
+        },
+        {
+          "time": "21:15",
+          "title": "Dave Johnson",
+          "description": "30-minute set"
+        },
+        {
+          "time": "21:45",
+          "title": "Jessica Williams",
+          "description": "45-minute headline set"
+        }
+      ],
+      "venue": {
+        "name": "The Laugh Factory",
+        "address": "456 Comedy Lane, City, State 12345",
+        "phone": "(555) 987-6543",
+        "website": "https://www.laughfactory.com",
+        "websiteLabel": "laughfactory.com"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Modern Art Exhibition: Perspectives",
+      "slug": "modern-art-exhibition-perspectives",
+      "category": "Art",
+      "date": "2025-07-10",
+      "startTime": "10:00",
+      "endTime": "18:00",
+      "location": "Metropolitan Art Gallery",
+      "shortDescription": "A curated collection of contemporary artworks exploring diverse perspectives on modern society.",
+      "description": "<p>\"Perspectives\" brings together works from 30 contemporary artists from around the world, exploring how different viewpoints and experiences shape our understanding of modern society.</p><p>This exhibition spans multiple mediums including painting, sculpture, photography, digital art, and mixed media installations. Each piece invites visitors to consider alternative perspectives and challenge their own preconceptions about the world we share.</p><p>The exhibition is organized into four thematic sections:</p><ul><li><strong>Urban Landscapes</strong>: Exploring city life and architecture</li><li><strong>Identity & Belonging</strong>: Works examining cultural identity and community</li><li><strong>Digital Age</strong>: Art reflecting on technology and connectivity</li><li><strong>Environmental Reflections</strong>: Perspectives on nature and sustainability</li></ul><p>Guided tours are available daily at 11:00 AM and 2:00 PM, and an audio guide can be accessed through the gallery's mobile app.</p>",
+      "image": "/assets/images/events/art-exhibition.jpg",
+      "bannerImage": "/assets/images/events/art-exhibition-banner.jpg",
+      "price": 15,
+      "featured": false,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "art-exhibition-july-2025"
+      },
+      "performers": [
+        {
+          "name": "Curator's Tour with Dr. Maya Lin",
+          "role": "Special Event",
+          "image": "/assets/images/performers/maya-lin.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "10:00",
+          "title": "Exhibition Opens",
+          "description": "All gallery spaces accessible"
+        },
+        {
+          "time": "11:00",
+          "title": "Morning Guided Tour",
+          "description": "60-minute tour with gallery docent"
+        },
+        {
+          "time": "14:00",
+          "title": "Afternoon Guided Tour",
+          "description": "60-minute tour with gallery docent"
+        },
+        {
+          "time": "16:00",
+          "title": "Artist Talk: Urban Perspectives",
+          "description": "Panel discussion with featured artists"
+        }
+      ],
+      "venue": {
+        "name": "Metropolitan Art Gallery",
+        "address": "789 Culture Street, City, State 12345",
+        "phone": "(555) 234-5678",
+        "website": "https://www.metartgallery.org",
+        "websiteLabel": "metartgallery.org"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Shakespeare in the Park: A Midsummer Night's Dream",
+      "slug": "shakespeare-in-the-park",
+      "category": "Theater",
+      "date": "2025-08-05",
+      "startTime": "19:30",
+      "endTime": "22:00",
+      "location": "Riverside Gardens",
+      "shortDescription": "A magical outdoor performance of Shakespeare's beloved comedy under the summer stars.",
+      "description": "<p>Experience the enchantment of Shakespeare's most magical comedy in the beautiful setting of Riverside Gardens. Our talented cast brings to life the intertwined tales of mischievous fairies, young lovers, and amateur actors in this timeless tale of romance and hilarity.</p><p>This outdoor production combines classic Shakespearean dialogue with contemporary staging and costumes, making it accessible and enjoyable for audiences of all ages and backgrounds. Whether you're a Shakespeare enthusiast or experiencing the Bard's work for the first time, this production promises an evening of delight and wonder.</p><h3>What to Bring</h3><ul><li>Blankets or low-back chairs for seating</li><li>Picnic dinner (no alcohol permitted)</li><li>Bug spray</li><li>Light jacket for when the sun sets</li></ul><p>In case of rain, the performance will be moved to the Community Theater on Main Street. Ticket holders will be notified by email by 3:00 PM on the day of the performance.</p>",
+      "image": "/assets/images/events/shakespeare.jpg",
+      "bannerImage": "/assets/images/events/shakespeare-banner.jpg",
+      "price": 25,
+      "featured": true,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "shakespeare-august-2025"
+      },
+      "performers": [
+        {
+          "name": "City Theater Company",
+          "role": "Performance Group",
+          "image": "/assets/images/performers/city-theater.jpg"
+        },
+        {
+          "name": "Daniel Foster",
+          "role": "Director",
+          "image": "/assets/images/performers/daniel-foster.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "18:00",
+          "title": "Gardens Open",
+          "description": "Find your spot and set up picnics"
+        },
+        {
+          "time": "19:00",
+          "title": "Pre-Show Music",
+          "description": "Live Renaissance-inspired music"
+        },
+        {
+          "time": "19:30",
+          "title": "Performance Begins",
+          "description": "A Midsummer Night's Dream"
+        },
+        {
+          "time": "20:45",
+          "title": "Intermission",
+          "description": "15-minute break"
+        },
+        {
+          "time": "22:00",
+          "title": "Performance Ends",
+          "description": "Meet the cast in the garden"
+        }
+      ],
+      "venue": {
+        "name": "Riverside Gardens",
+        "address": "321 River Road, City, State 12345",
+        "phone": "(555) 345-6789",
+        "website": "https://www.riversidegardens.org",
+        "websiteLabel": "riversidegardens.org"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Electronic Music Festival: Digital Dreams",
+      "slug": "electronic-music-festival",
+      "category": "Music",
+      "date": "2025-09-12",
+      "startTime": "16:00",
+      "endTime": "02:00",
+      "location": "Soundwave Arena",
+      "shortDescription": "A 10-hour journey through electronic music with world-renowned DJs and immersive visual experiences.",
+      "description": "<p>Digital Dreams brings together the best in electronic music for an unforgettable night of beats, lights, and energy. Experience cutting-edge sound systems, spectacular lighting designs, and mind-blowing visual projections as you dance the night away to sets from world-renowned DJs and producers.</p><p>This year's festival features three stages, each showcasing different electronic music genres:</p><ul><li><strong>Main Stage:</strong> EDM, Progressive House, and Electro</li><li><strong>Underground:</strong> Techno, Tech House, and Deep House</li><li><strong>Future Sounds:</strong> Experimental, Bass, and Emerging Artists</li></ul><p>In addition to incredible music, Digital Dreams offers interactive art installations, chill-out zones, and a variety of food and drink options to keep you fueled throughout the night.</p><h3>Important Information</h3><p>This is an 18+ event. Valid ID required for entry. Re-entry is permitted with a valid wristband. No outside food or drinks allowed.</p>",
+      "image": "/assets/images/events/electronic-festival.jpg",
+      "bannerImage": "/assets/images/events/electronic-festival-banner.jpg",
+      "price": 75,
+      "featured": false,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "digital-dreams-2025"
+      },
+      "performers": [
+        {
+          "name": "Pulse",
+          "role": "Headliner",
+          "image": "/assets/images/performers/pulse.jpg"
+        },
+        {
+          "name": "Synthia",
+          "role": "Featured Artist",
+          "image": "/assets/images/performers/synthia.jpg"
+        },
+        {
+          "name": "Beatmasters",
+          "role": "Opening Act",
+          "image": "/assets/images/performers/beatmasters.jpg"
+        },
+        {
+          "name": "Neon Collective",
+          "role": "Visual Artists",
+          "image": "/assets/images/performers/neon-collective.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "16:00",
+          "title": "Doors Open",
+          "description": "Early arrival recommended"
+        },
+        {
+          "time": "17:00",
+          "title": "Opening Acts Begin",
+          "description": "All three stages active"
+        },
+        {
+          "time": "20:00",
+          "title": "Beatmasters",
+          "description": "Main Stage"
+        },
+        {
+          "time": "22:00",
+          "title": "Synthia",
+          "description": "Main Stage"
+        },
+        {
+          "time": "00:00",
+          "title": "Pulse",
+          "description": "Main Stage Headline Set"
+        }
+      ],
+      "venue": {
+        "name": "Soundwave Arena",
+        "address": "555 Beat Street, City, State 12345",
+        "phone": "(555) 456-7890",
+        "website": "https://www.soundwavearena.com",
+        "websiteLabel": "soundwavearena.com"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Film Festival: Independent Visions",
+      "slug": "film-festival-independent-visions",
+      "category": "Other",
+      "date": "2025-10-18",
+      "startTime": "12:00",
+      "endTime": "22:00",
+      "location": "Cinema Arts Center",
+      "shortDescription": "A showcase of groundbreaking independent films from emerging directors around the world.",
+      "description": "<p>Independent Visions celebrates the art of filmmaking outside the mainstream, showcasing the creativity, innovation, and diverse perspectives of independent cinema. This one-day festival features carefully selected short films, documentaries, and feature-length works from emerging directors around the world.</p><p>Throughout the day, screenings will be held in three theaters within the Cinema Arts Center, allowing attendees to customize their festival experience based on their interests. Many screenings will be followed by Q&A sessions with the filmmakers, providing insight into their creative process and vision.</p><h3>Festival Sections</h3><ul><li><strong>New Narratives:</strong> Innovative storytelling in fiction</li><li><strong>Doc Spotlight:</strong> Compelling non-fiction filmmaking</li><li><strong>Global Perspectives:</strong> International independent cinema</li><li><strong>Short Film Showcase:</strong> The best in brief storytelling</li></ul><p>Festival passes provide access to all screenings, while individual tickets are available for specific films.</p>",
+      "image": "/assets/images/events/film-festival.jpg",
+      "bannerImage": "/assets/images/events/film-festival-banner.jpg",
+      "price": 40,
+      "featured": false,
+      "pretixEvent": {
+        "organizerSlug": "eventplatform",
+        "eventSlug": "film-festival-2025"
+      },
+      "performers": [
+        {
+          "name": "Opening Film: \"Echoes\"",
+          "role": "Feature Film",
+          "image": "/assets/images/performers/echoes-film.jpg"
+        },
+        {
+          "name": "Director Panel",
+          "role": "Special Event",
+          "image": "/assets/images/performers/director-panel.jpg"
+        }
+      ],
+      "schedule": [
+        {
+          "time": "12:00",
+          "title": "Festival Opens",
+          "description": "Welcome reception with light refreshments"
+        },
+        {
+          "time": "13:00",
+          "title": "Opening Film: \"Echoes\"",
+          "description": "Award-winning feature with director Q&A"
+        },
+        {
+          "time": "15:30",
+          "title": "Short Film Showcase",
+          "description": "Collection of international short films"
+        },
+        {
+          "time": "17:30",
+          "title": "Director Panel",
+          "description": "Discussion with featured filmmakers"
+        },
+        {
+          "time": "19:00",
+          "title": "Documentary Spotlight",
+          "description": "Featured documentary screening"
+        },
+        {
+          "time": "21:00",
+          "title": "Closing Film",
+          "description": "Festival awards and final screening"
+        }
+      ],
+      "venue": {
+        "name": "Cinema Arts Center",
+        "address": "888 Film Row, City, State 12345",
+        "phone": "(555) 567-8901",
+        "website": "https://www.cinemaartsorg",
+        "websiteLabel": "cinemaarts.org"
+      }
+    }
+  ]
+}
