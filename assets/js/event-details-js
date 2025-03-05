@@ -60,7 +60,7 @@ function loadEventDetails(slug) {
  */
 function displayEventDetails(event) {
     // Set page title
-    document.title = `${event.title} | Event Platform`;
+    document.title = `${event.title} | Haus Muerte`;
     
     // Set event banner image
     document.querySelector('.event-banner').style.backgroundImage = `url('${event.bannerImage || event.image}')`;
@@ -207,14 +207,14 @@ function initializePretixWidget(event) {
         // Update the widget script source if needed
         const scriptElement = document.querySelector('script[src*="pretix"]');
         if (scriptElement) {
-            scriptElement.src = `https://pretix-instance-url.fly.io/widget/v1.en.js`;
+            scriptElement.src = `https://pretix.eu/widget/v1.en.js`;
         }
         
         // Initialize the Pretix widget
         const config = {
             eventSlug: event.pretixEvent.eventSlug,
             organizerSlug: event.pretixEvent.organizerSlug,
-            baseUrl: 'https://pretix-instance-url.fly.io/',
+            baseUrl: 'https://pretix.eu/',
             elementId: 'pretix-widget-container',
             voucher: event.pretixEvent.voucher || null,
             subeventId: event.pretixEvent.subeventId || null

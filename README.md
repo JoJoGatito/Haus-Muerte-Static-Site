@@ -44,70 +44,19 @@ event-website/
 ### Prerequisites
 
 - Web hosting service (like Porkbun's static hosting)
-- Self-hosted Pretix instance (for ticket sales)
-- Self-hosted LimeSurvey instance (for performer applications)
+- Pretix.eu account (for ticket sales)
+- LimeSurvey account (for performer applications)
 
 ### Installation
 
 1. Clone this repository
 2. Customize the configuration:
-   - Update the Pretix instance URL in `event-template.html` and `event-details.js`
+   - Update your Pretix event URL in `event-template.html` 
    - Update the LimeSurvey URL in `apply/index.html`
    - Customize branding, colors, and text in CSS files
    - Add your own event data to `data/events.json`
 3. Add event images to `assets/images/events/` directory
 4. Upload the files to your web hosting service
-
-### Self-Hosting Pretix on Fly.io
-
-To set up Pretix on Fly.io:
-
-1. Create a Fly.io account and install the flyctl CLI
-2. Create a Dockerfile for Pretix:
-
-```dockerfile
-FROM pretix/standalone:latest
-
-# Add custom configuration if needed
-COPY pretix.cfg /etc/pretix/pretix.cfg
-
-# Expose the port
-EXPOSE 8000
-
-# Set the command
-CMD ["/usr/local/bin/pretix", "web"]
-```
-
-3. Create a fly.toml file:
-
-```toml
-app = "your-pretix-instance"
-
-[build]
-  dockerfile = "Dockerfile"
-
-[env]
-  PORT = "8000"
-
-[http_service]
-  internal_port = 8000
-  force_https = true
-```
-
-4. Deploy with:
-
-```bash
-flyctl launch
-```
-
-5. Set up a PostgreSQL database:
-
-```bash
-flyctl postgres create
-flyctl postgres attach --app your-pretix-instance
-```
-
-6. Access your Pretix instance at https://your-pretix-instance.fly.dev
 
 ## Creating Event Pages
 
@@ -150,8 +99,8 @@ The `events.json` file contains all event data including:
   "price": 45,
   "featured": true,
   "pretixEvent": {
-    "organizerSlug": "your-organizer",
-    "eventSlug": "your-event-slug"
+    "organizerSlug": "hausmuerte",
+    "eventSlug": "qw"
   },
   "performers": [
     {

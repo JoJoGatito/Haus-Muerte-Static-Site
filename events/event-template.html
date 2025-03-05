@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Title | Event Platform</title>
+    <title>Event Title | Haus Muerte</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/event-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Pretix Widget CSS -->
-    <link rel="stylesheet" type="text/css" href="https://pretix-instance-url.fly.io/widget/v1.css">
+    <link rel="stylesheet" type="text/css" href="https://pretix.eu/hausmuerte/qw/widget/v1.css" crossorigin>
+    <script type="text/javascript" src="https://pretix.eu/widget/v1.en.js" async crossorigin></script>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                <a href="../index.html">Event<span>Platform</span></a>
+                <a href="../index.html">Haus<span>Muerte</span></a>
             </div>
             <nav>
                 <ul>
@@ -85,7 +86,14 @@
                     <div class="event-sidebar">
                         <div class="tickets-widget">
                             <h2>Tickets</h2>
-                            <div id="pretix-widget-container"></div>
+                            <pretix-widget event="https://pretix.eu/hausmuerte/qw/" single-item-select="button"></pretix-widget>
+                            <noscript>
+                               <div class="pretix-widget">
+                                    <div class="pretix-widget-info-message">
+                                        JavaScript is disabled in your browser. To access our ticket shop without JavaScript, please <a target="_blank" rel="noopener" href="https://pretix.eu/hausmuerte/qw/">click here</a>.
+                                    </div>
+                                </div>
+                            </noscript>
                         </div>
 
                         <div class="event-share">
@@ -126,33 +134,26 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Event<span>Platform</span></h3>
-                    <p>Creating memorable experiences through events that matter.</p>
+                    <h3>Haus<span>Muerte</span></h3>
+                    <p>Creating unique and powerful underground events.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Event St, City, Country</p>
-                    <p><i class="fas fa-envelope"></i> info@eventplatform.com</p>
-                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@hausmuerte.com</p>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EventPlatform. All rights reserved.</p>
+                <p>&copy; 2025 Haus Muerte. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Pretix Widget JavaScript -->
-    <script type="text/javascript" src="https://pretix-instance-url.fly.io/widget/v1.en.js" async></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/event-details.js"></script>
 </body>
