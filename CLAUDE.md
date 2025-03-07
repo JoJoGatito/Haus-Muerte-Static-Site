@@ -1,38 +1,29 @@
-# Haus Muerte Static Site - Developer Guide
+# LimeSurvey Development Guide
 
-## Build & Management
-- This is a static site with no build system
-- For local preview: Use `python -m http.server` or `npx serve`
-- Deployment: Upload files to web hosting (Porkbun static hosting)
+## Build & Development Commands
+- **Docker Build**: `docker build -t limesurvey-fly .`
+- **Docker Run**: `docker run -p 8080:8080 limesurvey-fly`
+- **Deploy to Fly.io**: `fly deploy`
 
 ## Code Style Guidelines
+- Use **CamelCase** for class names, method names, properties, parameters, and variables
+- Method length should not exceed 150 lines
+- Variable naming:
+  - Minimum length: 3 characters (except 'db')
+  - Maximum length: 40 characters
+- Method naming: Minimum length 3 characters (except 'gt', 'et')
+- Use type declarations where possible
+- Avoid superglobals where possible
+- Check for unused code (fields, variables, methods, parameters)
 
-### HTML/CSS
-- HTML5 semantic elements with BEM-like class naming (`block-element--modifier`)
-- Mobile-first responsive design with media queries
-- CSS variables defined in `:root` for theming (colors, spacing, etc.)
-- CSS classes use kebab-case: `primary-button`, `event-card`
+## Pull Request Workflow
+- Bug fixes go to **master** branch
+- New features go to **develop** branch
+- Always reference Mantis issue numbers in PR descriptions
+- PR title format: "Fixed issue #XXXX:" or "New feature #XXXX:" or "Dev:"
 
-### JavaScript
-- Variable/function names: camelCase with descriptive naming
-- Event listeners organized at top of files
-- Error handling: Use try/catch with console.error
-- Document complex functions with JSDoc comments
-- Keep functions simple with single responsibility
-
-### Data Management
-- Event data stored in `data/events.json`
-- Consistent JSON format for all events (see README.md example)
-- Follow the event object format in the documentation
-
-## Project Structure
-- `/index.html` - Home page with event calendar (FullCalendar.js)
-- `/events/` - Event listings and individual event pages
-- `/apply/` - Performer application page (LimeSurvey integration)
-- `/assets/` - CSS, JS, and images organized by type
-- `/data/` - JSON data files
-
-## External Dependencies
-- FullCalendar.js - Calendar library
-- Pretix - Ticket sales integration
-- LimeSurvey - Forms for performer applications
+## Error Handling
+- Avoid exit expressions
+- Avoid eval expressions
+- Validate user inputs thoroughly
+- Don't use development code fragments in production

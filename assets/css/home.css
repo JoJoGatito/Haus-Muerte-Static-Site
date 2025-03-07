@@ -1,0 +1,211 @@
+/* 
+   Home Page Specific Styles for Event Platform
+   Contains styles for the homepage and featured image
+*/
+
+/* Featured Image Section */
+.featured-image-section {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--background-dark);
+}
+
+.featured-image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    height: 500px;
+}
+
+.featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-normal);
+}
+
+.featured-image-wrapper:hover .featured-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+    color: var(--text-light);
+    text-align: left;
+}
+
+.image-overlay h2 {
+    color: var(--text-light);
+    font-size: 2.2rem;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.image-overlay p {
+    opacity: 0.9;
+    max-width: 600px;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    border: 2px solid var(--text-light);
+    color: var(--text-light);
+}
+
+.btn-outline-light:hover {
+    background-color: var(--text-light);
+    color: var(--primary-dark);
+}
+
+/* Dark theme styles */
+.dark-theme {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.dark-theme header {
+    background-color: #000000;
+    border-bottom: 1px solid #333;
+}
+
+.dark-theme .logo a {
+    color: var(--text-light);
+}
+
+.dark-theme nav ul li a {
+    color: var(--text-light);
+}
+
+.dark-theme nav ul li a:hover, 
+.dark-theme nav ul li a.active {
+    color: var(--primary-color);
+    background-color: rgba(165, 5, 22, 0.1);
+}
+
+.dark-theme .hamburger span {
+    background-color: var(--text-light);
+}
+
+.dark-theme h1, 
+.dark-theme h2, 
+.dark-theme h3, 
+.dark-theme h4, 
+.dark-theme h5, 
+.dark-theme h6 {
+    color: var(--text-light);
+}
+
+.dark-theme .calendar-section,
+.dark-theme .about-section,
+.dark-theme .featured-events {
+    background-color: #0c0505;
+}
+
+.dark-theme .event-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+.dark-theme .btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.dark-theme .btn-secondary:hover {
+    background-color: var(--secondary-dark);
+}
+
+/* Updated hero section to match the theme */
+.hero {
+    background-image: linear-gradient(120deg, var(--primary-dark), var(--primary-color));
+}
+
+/* Custom section styles for dark theme */
+.perform-cta {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.perform-cta h2 {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.perform-cta p {
+    margin-bottom: var(--spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* FC Calendar customization for dark theme */
+.dark-theme .fc {
+    --fc-page-bg-color: #1a1a1a;
+    --fc-border-color: #333333;
+    --fc-neutral-bg-color: #0c0505;
+    --fc-neutral-text-color: var(--text-light);
+    --fc-button-text-color: var(--text-light);
+    --fc-button-bg-color: var(--primary-color);
+    --fc-button-border-color: var(--primary-color);
+    --fc-button-hover-bg-color: var(--primary-dark);
+    --fc-button-hover-border-color: var(--primary-dark);
+    --fc-button-active-bg-color: var(--primary-dark);
+    --fc-button-active-border-color: var(--primary-dark);
+    --fc-event-bg-color: var(--primary-color);
+    --fc-event-border-color: var(--primary-color);
+    --fc-event-text-color: var(--text-light);
+    --fc-today-bg-color: rgba(165, 5, 22, 0.1);
+}
+
+.dark-theme .fc-col-header,
+.dark-theme .fc-daygrid-body,
+.dark-theme .fc-scrollgrid {
+    background-color: #1a1a1a;
+}
+
+.dark-theme .fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(165, 5, 22, 0.1);
+}
+
+.dark-theme .fc .fc-daygrid-day-number {
+    color: var(--text-light);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .featured-image-wrapper {
+        height: 350px;
+    }
+    
+    .image-overlay h2 {
+        font-size: 1.6rem;
+    }
+    
+    .image-overlay p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .featured-image-wrapper {
+        height: 250px;
+    }
+    
+    .image-overlay {
+        padding: var(--spacing-md);
+    }
+    
+    .image-overlay h2 {
+        font-size: 1.4rem;
+    }
+}
