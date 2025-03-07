@@ -27,7 +27,7 @@
     --fc-button-active-border-color: var(--primary-dark);
     --fc-event-bg-color: var(--primary-color);
     --fc-event-border-color: var(--primary-color);
-    --fc-today-bg-color: rgba(98, 0, 234, 0.1);
+    --fc-today-bg-color: rgba(165, 5, 22, 0.1);
 }
 
 .fc .fc-button-primary {
@@ -63,28 +63,28 @@
 
 /* Event category colors */
 .fc .event-music {
-    background-color: #6200ea;
-    border-color: #6200ea;
+    background-color: #a50516;
+    border-color: #a50516;
 }
 
 .fc .event-theater {
-    background-color: #2962ff;
-    border-color: #2962ff;
+    background-color: #6a1017;
+    border-color: #6a1017;
 }
 
 .fc .event-comedy {
-    background-color: #00b248;
-    border-color: #00b248;
+    background-color: #303030;
+    border-color: #303030;
 }
 
 .fc .event-art {
-    background-color: #ff6d00;
-    border-color: #ff6d00;
+    background-color: #505050;
+    border-color: #505050;
 }
 
 .fc .event-other {
-    background-color: #8d6e63;
-    border-color: #8d6e63;
+    background-color: #202020;
+    border-color: #202020;
 }
 
 /* Responsive adjustments */
@@ -169,11 +169,11 @@
     letter-spacing: 0.5px;
 }
 
-.event-card-category.music { background-color: #6200ea; }
-.event-card-category.theater { background-color: #2962ff; }
-.event-card-category.comedy { background-color: #00b248; }
-.event-card-category.art { background-color: #ff6d00; }
-.event-card-category.other { background-color: #8d6e63; }
+.event-card-category.music { background-color: #a50516; }
+.event-card-category.theater { background-color: #6a1017; }
+.event-card-category.comedy { background-color: #303030; }
+.event-card-category.art { background-color: #505050; }
+.event-card-category.other { background-color: #202020; }
 
 .event-card-title {
     font-size: 1.25rem;
