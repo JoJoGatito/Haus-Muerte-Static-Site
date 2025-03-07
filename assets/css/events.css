@@ -52,7 +52,8 @@
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     padding: 8px 12px;
-    background-color: var(--background-light);
+    background-color: #1a1a1a;
+    color: var(--text-light);
     min-width: 180px;
     font-family: var(--font-body);
 }
@@ -101,7 +102,7 @@
 
 .event-badge {
     background-color: rgba(0, 0, 0, 0.6);
-    color: white;
+    color: var(--text-light);
     font-size: 0.7rem;
     padding: 3px 8px;
     border-radius: var(--border-radius-sm);

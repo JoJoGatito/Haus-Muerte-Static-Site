@@ -34,7 +34,7 @@
 }
 
 .info-card {
-    background-color: var(--background-light);
+    background-color: #1a1a1a;
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
     padding: var(--spacing-lg);
@@ -84,7 +84,7 @@
 }
 
 .limesurvey-container {
-    background-color: var(--background-light);
+    background-color: #1a1a1a;
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
     overflow: hidden;
@@ -110,7 +110,7 @@
 }
 
 .faq-item {
-    background-color: var(--background-light);
+    background-color: #1a1a1a;
     border-radius: var(--border-radius-md);
     margin-bottom: var(--spacing-md);
     overflow: hidden;
@@ -126,7 +126,7 @@
 }
 
 .faq-question:hover {
-    background-color: rgba(98, 0, 234, 0.05);
+    background-color: rgba(165, 5, 22, 0.1);
 }
 
 .faq-question h3 {

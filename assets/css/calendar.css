@@ -9,7 +9,7 @@
 }
 
 #calendar {
-    background-color: white;
+    background-color: #1a1a1a;
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
     padding: var(--spacing-md);
