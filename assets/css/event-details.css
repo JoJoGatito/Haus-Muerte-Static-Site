@@ -69,6 +69,7 @@
 /* Event Content Layout */
 .event-content {
     padding: var(--spacing-xl) 0;
+    background-color: var(--background-dark);
 }
 
 .event-layout {
@@ -194,10 +195,10 @@
     transform: translateY(-3px);
 }
 
-.share-btn.facebook:hover { background-color: #3b5998; color: white; }
-.share-btn.twitter:hover { background-color: #1da1f2; color: white; }
-.share-btn.email:hover { background-color: #ea4335; color: white; }
-.share-btn.copy:hover { background-color: #333; color: white; }
+.share-btn.facebook:hover { background-color: #a50516; color: var(--text-light); }
+.share-btn.twitter:hover { background-color: #6a1017; color: var(--text-light); }
+.share-btn.email:hover { background-color: #a50516; color: var(--text-light); }
+.share-btn.copy:hover { background-color: #333; color: var(--text-light); }
 
 /* Venue Information */
 .venue-info {
@@ -234,7 +235,7 @@
 
 /* Related Events */
 .related-events {
-    background-color: var(--background-alt);
+    background-color: #0c0505;
     padding: var(--spacing-xl) 0;
 }
 
@@ -310,4 +311,44 @@
         flex-direction: column;
         gap: var(--spacing-sm);
     }
+}
+
+/* Dark Theme Specific Styles */
+.dark-theme .event-description,
+.dark-theme .schedule-title,
+.dark-theme .performer-name,
+.dark-theme .venue-details p {
+    color: var(--text-light);
+}
+
+.dark-theme .performer-role,
+.dark-theme .schedule-description {
+    color: #aaaaaa;
+}
+
+.dark-theme .event-main h2, 
+.dark-theme .event-sidebar h2, 
+.dark-theme .event-sidebar h3 {
+    color: var(--text-light);
+    border-bottom-color: #333;
+}
+
+.dark-theme .tickets-widget,
+.dark-theme .venue-map,
+.dark-theme .share-btn {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+.dark-theme .schedule-item {
+    border-bottom-color: #333;
+}
+
+.dark-theme .venue-details i {
+    color: var(--text-light);
+}
+
+.dark-theme .event-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
 }

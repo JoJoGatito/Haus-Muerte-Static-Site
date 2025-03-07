@@ -4,7 +4,7 @@
 */
 
 .events-hero {
-    background-image: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+    background-image: linear-gradient(to right, #6a1017, #a50516);
     color: var(--text-light);
     padding: var(--spacing-xl) 0;
     text-align: center;
@@ -65,6 +65,7 @@
 /* Events Listing Section */
 .events-listing {
     padding: var(--spacing-xl) 0;
+    background-color: var(--background-dark);
 }
 
 .events-grid {
@@ -120,6 +121,34 @@
 
 .event-badge.few-tickets {
     background-color: var(--warning-color);
+}
+
+/* Dark Theme Styles */
+.dark-theme .events-filters {
+    background-color: #0c0505;
+}
+
+.dark-theme .event-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+.dark-theme .filter-group label {
+    color: var(--text-light);
+}
+
+.dark-theme #no-events-message {
+    color: var(--text-light);
+}
+
+.dark-theme .pagination button {
+    background-color: #1a1a1a;
+    color: var(--text-light);
+    border: 1px solid #333;
+}
+
+.dark-theme .pagination button:hover {
+    background-color: var(--primary-color);
 }
 
 /* Responsive styles */

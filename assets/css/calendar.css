@@ -4,21 +4,21 @@
 */
 
 .calendar-section {
-    background-color: var(--background-alt);
+    background-color: #0c0505;
     padding: var(--spacing-xl) 0;
 }
 
 #calendar {
-    background-color: #1a1a1a;
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-md);
+    background-color: #0c0505;
+    border-radius: 0;
+    box-shadow: none;
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
 }
 
 /* FullCalendar Customizations */
 .fc {
-    --fc-border-color: var(--border-color);
+    --fc-border-color: #333333;
     --fc-button-bg-color: var(--primary-color);
     --fc-button-border-color: var(--primary-color);
     --fc-button-hover-bg-color: var(--primary-dark);
@@ -28,6 +28,9 @@
     --fc-event-bg-color: var(--primary-color);
     --fc-event-border-color: var(--primary-color);
     --fc-today-bg-color: rgba(165, 5, 22, 0.1);
+    --fc-page-bg-color: #0c0505;
+    --fc-neutral-bg-color: #0c0505;
+    --fc-list-border-color: #333333;
 }
 
 .fc .fc-button-primary {
@@ -41,12 +44,12 @@
 .fc .fc-toolbar-title {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 .fc .fc-daygrid-day-number {
     font-weight: 500;
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 .fc .fc-event {
@@ -112,6 +115,49 @@
     .fc .fc-toolbar-title {
         font-size: 1.1rem;
     }
+}
+
+/* Additional Dark Theme Calendar Styles */
+.dark-theme .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid #333333;
+}
+
+.dark-theme .fc .fc-cell-shaded, 
+.dark-theme .fc .fc-day-disabled {
+    background-color: #1a1a1a;
+}
+
+.dark-theme .fc th, 
+.dark-theme .fc td {
+    border-color: #333333;
+}
+
+.dark-theme .fc table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+}
+
+.dark-theme .fc-col-header, 
+.dark-theme .fc-daygrid-body, 
+.dark-theme .fc-scrollgrid {
+    background-color: #0c0505;
+}
+
+.dark-theme .fc .fc-daygrid-day-frame {
+    background-color: #0c0505;
+}
+
+.dark-theme .fc-scrollgrid-section > td {
+    border-color: #333333;
+}
+
+.dark-theme .fc .fc-day-other .fc-daygrid-day-top {
+    opacity: 0.5;
+}
+
+.dark-theme .fc .fc-daygrid-day-number {
+    color: var(--text-light);
 }
 
 /* Featured events section on homepage */

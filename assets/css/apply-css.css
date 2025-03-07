@@ -4,7 +4,7 @@
 */
 
 .apply-hero {
-    background-image: linear-gradient(to left, var(--primary-dark), var(--primary-color));
+    background-image: linear-gradient(to left, #6a1017, #a50516);
     color: var(--text-light);
     padding: var(--spacing-xl) 0;
     text-align: center;
@@ -49,7 +49,7 @@
 .info-card .icon {
     width: 70px;
     height: 70px;
-    background-color: var(--primary-light);
+    background-color: #a50516;
     color: var(--text-light);
     border-radius: 50%;
     display: flex;
@@ -74,13 +74,14 @@
 /* Application Form */
 .application-form {
     padding: var(--spacing-xl) 0;
+    background-color: var(--background-dark);
 }
 
 .form-intro {
     max-width: 700px;
     text-align: center;
     margin: 0 auto var(--spacing-xl);
-    color: var(--text-muted);
+    color: var(--text-light);
 }
 
 .limesurvey-container {
@@ -152,6 +153,27 @@
 .faq-item.active .faq-answer {
     padding: 0 var(--spacing-md) var(--spacing-md);
     max-height: 500px;
+}
+
+/* Dark Theme Specific Styles */
+.dark-theme .apply-info {
+    background-color: #0c0505;
+}
+
+.dark-theme .faq-section {
+    background-color: #0c0505;
+}
+
+.dark-theme .info-card p {
+    color: var(--text-light);
+}
+
+.dark-theme .faq-question h3 {
+    color: var(--text-light);
+}
+
+.dark-theme .faq-answer p {
+    color: var(--text-light);
 }
 
 /* Responsive styles */

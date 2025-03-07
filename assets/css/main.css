@@ -23,9 +23,9 @@
     --background-dark: #000000; /* Black background */
     --background-alt: #0c0505; /* Very dark, nearly black */
     --border-color: #333333;
-    --error-color: #f44336;
-    --success-color: #4caf50;
-    --warning-color: #ff9800;
+    --error-color: #a50516;
+    --success-color: #505050;
+    --warning-color: #6a1017;
 
     /* Typography */
     --font-heading: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
@@ -55,5 +55,32 @@
     --transition-slow: 0.5s ease;
 }
 
+/* Global styles for dark theme */
+body.dark-theme {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+header {
+    background-color: #000000;
+    border-bottom: 1px solid #333;
+}
+
+footer {
+    background-color: #000000;
+    color: var(--text-light);
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid #333;
+}
+
+/* Make sure all headings have the right color */
+.dark-theme h1, 
+.dark-theme h2, 
+.dark-theme h3, 
+.dark-theme h4, 
+.dark-theme h5, 
+.dark-theme h6 {
+    color: var(--text-light);
+}
+
 /* Rest of the CSS remains the same as in the original main.css file */
-/* This is a partial file showing only the updated variables section */

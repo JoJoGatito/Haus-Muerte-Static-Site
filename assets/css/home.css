@@ -125,12 +125,12 @@
 
 /* Updated hero section to match the theme */
 .hero {
-    background-image: linear-gradient(120deg, var(--primary-dark), var(--primary-color));
+    background-image: linear-gradient(120deg, #6a1017, #a50516);
 }
 
 /* Custom section styles for dark theme */
 .perform-cta {
-    background-color: var(--primary-dark);
+    background-color: #6a1017;
     color: var(--text-light);
     padding: var(--spacing-xl) 0;
     text-align: center;
@@ -150,19 +150,19 @@
 
 /* FC Calendar customization for dark theme */
 .dark-theme .fc {
-    --fc-page-bg-color: #1a1a1a;
+    --fc-page-bg-color: #0c0505;
     --fc-border-color: #333333;
     --fc-neutral-bg-color: #0c0505;
     --fc-neutral-text-color: var(--text-light);
     --fc-button-text-color: var(--text-light);
-    --fc-button-bg-color: var(--primary-color);
-    --fc-button-border-color: var(--primary-color);
-    --fc-button-hover-bg-color: var(--primary-dark);
-    --fc-button-hover-border-color: var(--primary-dark);
-    --fc-button-active-bg-color: var(--primary-dark);
-    --fc-button-active-border-color: var(--primary-dark);
-    --fc-event-bg-color: var(--primary-color);
-    --fc-event-border-color: var(--primary-color);
+    --fc-button-bg-color: #a50516;
+    --fc-button-border-color: #a50516;
+    --fc-button-hover-bg-color: #6a1017;
+    --fc-button-hover-border-color: #6a1017;
+    --fc-button-active-bg-color: #6a1017;
+    --fc-button-active-border-color: #6a1017;
+    --fc-event-bg-color: #a50516;
+    --fc-event-border-color: #a50516;
     --fc-event-text-color: var(--text-light);
     --fc-today-bg-color: rgba(165, 5, 22, 0.1);
 }
@@ -170,7 +170,7 @@
 .dark-theme .fc-col-header,
 .dark-theme .fc-daygrid-body,
 .dark-theme .fc-scrollgrid {
-    background-color: #1a1a1a;
+    background-color: #0c0505;
 }
 
 .dark-theme .fc .fc-daygrid-day.fc-day-today {
