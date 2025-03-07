@@ -1,26 +1,26 @@
 /* 
-   Main Stylesheet for Event Platform
+   Main Stylesheet for Haus Muerte
    Contains global styles, layout, typography, and components
-   Updated with theme colors to match featured image
+   Theme: black, grey, white, and crimson
 */
 
 /* ===== RESET & VARIABLES ===== */
 :root {
-    /* Color palette - Updated to match IMG_2275.jpg image */
+    /* Color palette - Black, grey, white, and crimson theme */
     --primary-color: #a50516; /* Deep crimson red */
     --primary-light: #c41122;
     --primary-dark: #80030e;
-    --secondary-color: #74747c; /* Gray with blue tint */
-    --secondary-light: #8d8d96;
-    --secondary-dark: #5c5c63;
-    --accent-color: #f0e5e5; /* Light off-white/pale pink */
+    --secondary-color: #303030; /* Dark grey */
+    --secondary-light: #505050;
+    --secondary-dark: #202020;
+    --accent-color: #f0f0f0; /* Light grey/off-white */
     --accent-light: #ffffff;
-    --accent-dark: #d9d0d0;
+    --accent-dark: #d0d0d0;
     --text-dark: #0c0505; /* Very dark, nearly black */
-    --text-light: #f0e5e5; /* Light off-white/pale pink */
-    --text-muted: #74747c; /* Gray with blue tint */
-    --background-light: #f0e5e5; /* Light off-white/pale pink */
-    --background-dark: #000000; /* Black background as requested */
+    --text-light: #f0f0f0; /* Light grey/off-white */
+    --text-muted: #606060; /* Medium grey */
+    --background-light: #f0f0f0; /* Light grey/off-white */
+    --background-dark: #000000; /* Black background */
     --background-alt: #0c0505; /* Very dark, nearly black */
     --border-color: #333333;
     --error-color: #f44336;
