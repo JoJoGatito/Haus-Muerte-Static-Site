@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (calendarEl) {
         // Fetch events data from JSON file
-        fetch('/data/events.json')
+        fetch('data/events.json')
             .then(response => response.json())
             .then(data => {
                 initializeCalendar(calendarEl, data.events);
@@ -44,7 +44,7 @@ function initializeCalendar(calendarEl, events) {
             title: event.title,
             start: start,
             end: end,
-            url: `/events/${event.slug}.html`,
+            url: `events/${event.slug}.html`,
             classNames: [`event-${event.category.toLowerCase()}`],
             extendedProps: {
                 category: event.category,

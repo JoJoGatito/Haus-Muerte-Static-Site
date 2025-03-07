@@ -44,7 +44,7 @@ function loadEvents() {
     const eventsContainer = document.getElementById('events-container');
     
     if (eventsContainer) {
-        fetch('/data/events.json')
+        fetch('../data/events.json')
             .then(response => response.json())
             .then(data => {
                 // Store all events
@@ -224,7 +224,7 @@ function createEventCard(event) {
             <p class="event-card-description">${event.shortDescription}</p>
             <div class="event-card-actions">
                 <span class="event-card-price">${event.price === 0 ? 'Free' : '$' + event.price}</span>
-                <a href="/events/${event.slug}.html" class="event-card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                <a href="${event.slug}.html" class="event-card-link">View Details <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     `;
