@@ -34,53 +34,22 @@
     <main>
         <section class="events-hero">
             <div class="container">
-                <h1>Upcoming Experiences</h1>
-                <p>Step into the shadows with our curated events</p>
-            </div>
-        </section>
-
-        <section class="events-filters">
-            <div class="container">
-                <div class="filter-wrapper">
-                    <div class="filter-group">
-                        <label for="category-filter">Category:</label>
-                        <select id="category-filter">
-                            <option value="all">All Categories</option>
-                            <option value="music">Music</option>
-                            <option value="theater">Theater</option>
-                            <option value="comedy">Comedy</option>
-                            <option value="art">Art</option>
-                            <option value="other">Other</option>
-                        </select>
+                <div class="gothic-frame">
+                    <h1>Upcoming Experiences</h1>
+                    <div class="gothic-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-skull"></i>
+                        <span class="divider-line"></span>
                     </div>
-                    <div class="filter-group">
-                        <label for="date-filter">Date:</label>
-                        <select id="date-filter">
-                            <option value="all">All Dates</option>
-                            <option value="today">Today</option>
-                            <option value="this-week">This Week</option>
-                            <option value="this-month">This Month</option>
-                            <option value="next-month">Next Month</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="search-events">Search:</label>
-                        <input type="text" id="search-events" placeholder="Search events...">
-                    </div>
+                    <p>Step into the shadows with our curated events</p>
                 </div>
             </div>
         </section>
 
-        <section class="events-listing">
+        <section class="featured-events">
             <div class="container">
                 <div class="events-grid" id="events-container">
-                    <!-- Events will be loaded dynamically from events.json -->
-                </div>
-                <div id="no-events-message" class="hidden">
-                    <p>No events match your current filters. Try adjusting your search criteria.</p>
-                </div>
-                <div class="pagination">
-                    <button id="load-more" class="btn btn-secondary">Load More</button>
+                    <!-- Featured events will be loaded dynamically -->
                 </div>
             </div>
         </section>

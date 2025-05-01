@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haus Muerte | Home</title>
+    <!-- Gothic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&family=EB+Garamond:wght@400;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/calendar.css">
     <link rel="stylesheet" href="assets/css/home.css">
@@ -36,9 +41,19 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Discover Dark Elegance</h1>
-                <p>Experience unique events curated by Haus Muerte</p>
-                <a href="events/index.html" class="btn btn-primary">Browse Events</a>
+                <div class="gothic-frame">
+                    <h1>Discover Dark Elegance</h1>
+                    <div class="gothic-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-skull"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p>Experience unique events curated by Haus Muerte</p>
+                    <a href="events/index.html" class="btn btn-primary">
+                        <i class="fas fa-spider"></i>
+                        <span>Browse Events</span>
+                    </a>
+                </div>
             </div>
         </section>
         
@@ -58,14 +73,22 @@
         
         <section class="calendar-section">
             <div class="container">
-                <h2>Event Calendar</h2>
+                <h2>
+                    <i class="fas fa-moon"></i>
+                    Event Calendar
+                    <i class="fas fa-moon"></i>
+                </h2>
                 <div id="calendar"></div>
             </div>
         </section>
 
         <section class="featured-events">
             <div class="container">
-                <h2>Featured Events</h2>
+                <h2>
+                    <i class="fas fa-ghost"></i>
+                    Featured Events
+                    <i class="fas fa-ghost"></i>
+                </h2>
                 <div class="events-grid" id="featured-events-container">
                     <!-- Events will be loaded dynamically from events.json -->
                 </div>
@@ -78,7 +101,11 @@
         <section class="perform-cta">
             <div class="container">
                 <div class="cta-content">
-                    <h2>Join the Darkness</h2>
+                    <h2>
+                        <i class="fas fa-crow"></i>
+                        Join the Darkness
+                        <i class="fas fa-crow"></i>
+                    </h2>
                     <p>We're seeking artists who embrace the shadows and create memorable experiences.</p>
                     <a href="apply/index.html" class="btn btn-primary">Apply Now</a>
                 </div>
@@ -87,7 +114,11 @@
 
         <section id="about" class="about-section">
             <div class="container">
-                <h2>About Us</h2>
+                <h2>
+                    <i class="fas fa-book-dead"></i>
+                    About Us
+                    <i class="fas fa-book-dead"></i>
+                </h2>
                 <p>Haus Muerte is a collective dedicated to curating unique, atmospheric events that blend darkness with elegance. Our mission is to create immersive experiences that challenge, inspire, and transform.</p>
                 <p>Founded in 2023, we've cultivated a community of artists and attendees who appreciate the beauty found within the shadows.</p>
             </div>

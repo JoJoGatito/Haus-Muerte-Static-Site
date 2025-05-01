@@ -4,10 +4,31 @@
 */
 
 .events-hero {
-    background-image: linear-gradient(to right, #6a1017, #a50516);
+    background: var(--gradient-primary);
     color: var(--text-light);
     padding: var(--spacing-xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.events-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 50%, rgba(128, 0, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(45, 0, 54, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: heroMist 15s ease-in-out infinite alternate;
+}
+
+@keyframes heroMist {
+    0% { opacity: 0.6; transform: translateX(-3%) translateY(0); }
+    100% { opacity: 0.9; transform: translateX(3%) translateY(0); }
 }
 
 .events-hero h1 {
@@ -65,14 +86,34 @@
 /* Events Listing Section */
 .events-listing {
     padding: var(--spacing-xl) 0;
-    background-color: var(--background-dark);
+    background: var(--gradient-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.events-listing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        rgba(128, 0, 0, 0.05) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(45, 0, 54, 0.05) 100%
+    );
+    pointer-events: none;
 }
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
 }
 
 .pagination {
@@ -124,50 +165,63 @@
 }
 
 /* Dark Theme Styles */
-.dark-theme .events-filters {
-    background-color: #0c0505;
+/* Gothic Event Card Enhancements */
+.event-card {
+    position: relative;
+    padding: 4px;
+    background: var(--gradient-dark);
+    border: var(--border-gothic);
+    transition: all var(--transition-normal);
 }
 
-.dark-theme .event-card {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
+.event-card::before,
+.event-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--accent-color);
+    opacity: 0.6;
+    transition: all var(--transition-normal);
 }
 
-.dark-theme .filter-group label {
-    color: var(--text-light);
+.event-card::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.event-card::after { top: 0; right: 0; border-left: none; border-bottom: none; }
+
+.event-card:hover::before,
+.event-card:hover::after {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+    border-color: var(--primary-color);
 }
 
-.dark-theme #no-events-message {
-    color: var(--text-light);
+.event-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-gothic);
 }
 
-.dark-theme .pagination button {
-    background-color: #1a1a1a;
-    color: var(--text-light);
-    border: 1px solid #333;
+.event-card-title {
+    font-family: var(--font-heading);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
 }
 
-.dark-theme .pagination button:hover {
-    background-color: var(--primary-color);
+.event-card:hover .event-card-title {
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(128, 0, 0, 0.3);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    .filter-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .filter-group select, .filter-group input {
-        width: 100%;
-    }
-    
     .events-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: 1fr;
+        padding: 0 var(--spacing-md);
+    }
+    
+    .event-card {
+        max-width: 500px;
+        margin: 0 auto;
     }
 }

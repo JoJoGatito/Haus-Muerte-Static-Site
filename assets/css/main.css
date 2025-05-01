@@ -6,30 +6,36 @@
 
 /* ===== RESET & VARIABLES ===== */
 :root {
-    /* Color palette - Black, grey, white, and crimson theme */
-    --primary-color: #a50516; /* Deep crimson red */
-    --primary-light: #c41122;
-    --primary-dark: #80030e;
-    --secondary-color: #303030; /* Dark grey */
-    --secondary-light: #505050;
-    --secondary-dark: #202020;
-    --accent-color: #f0f0f0; /* Light grey/off-white */
-    --accent-light: #ffffff;
-    --accent-dark: #d0d0d0;
-    --text-dark: #0c0505; /* Very dark, nearly black */
-    --text-light: #f0f0f0; /* Light grey/off-white */
-    --text-muted: #606060; /* Medium grey */
-    --background-light: #f0f0f0; /* Light grey/off-white */
-    --background-dark: #000000; /* Black background */
-    --background-alt: #0c0505; /* Very dark, nearly black */
+    /* Enhanced Gothic Color Palette */
+    --primary-color: #800000; /* Deep blood red */
+    --primary-light: #a31919;
+    --primary-dark: #590000;
+    --secondary-color: #2D0036; /* Dark purple */
+    --secondary-light: #3D004D;
+    --secondary-dark: #1A001F;
+    --accent-color: #C0C0C0; /* Metallic silver */
+    --accent-light: #D9D9D9;
+    --accent-dark: #A6A6A6;
+    --text-dark: #0c0505;
+    --text-light: #F0F0F0;
+    --text-muted: #808080;
+    --background-dark: #0A0000; /* Nearly black with red tint */
+    --background-darker: #000000;
+    --background-alt: #140808;
     --border-color: #333333;
-    --error-color: #a50516;
-    --success-color: #505050;
-    --warning-color: #6a1017;
+    --error-color: #800000;
+    --success-color: #2D0036;
+    --warning-color: #590000;
 
-    /* Typography */
-    --font-heading: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
-    --font-body: 'Open Sans', Arial, sans-serif;
+    /* Gothic Typography */
+    --font-heading: 'UnifrakturMaguntia', 'Pirata One', 'Segoe UI', serif;
+    --font-body: 'EB Garamond', 'Crimson Text', Georgia, serif;
+    
+    /* Gothic Effects */
+    --shadow-gothic: 0 4px 8px rgba(128, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.3);
+    --gradient-dark: linear-gradient(135deg, var(--background-darker) 0%, var(--background-alt) 100%);
+    --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary-color) 100%);
 
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -53,6 +59,82 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+
+    /* Gothic Decorative Elements */
+    --border-gothic: 2px solid var(--accent-color);
+    --border-gothic-hover: 2px solid var(--primary-color);
+}
+
+/* Gothic Decorative Elements */
+.gothic-frame {
+    position: relative;
+    padding: 2rem;
+    border: var(--border-gothic);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    transition: all var(--transition-normal);
+}
+
+.gothic-frame::before,
+.gothic-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: var(--border-gothic);
+    transition: all var(--transition-normal);
+}
+
+.gothic-frame::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.gothic-frame::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+.gothic-frame:hover::before,
+.gothic-frame:hover::after {
+    border-color: var(--primary-color);
+    width: 30px;
+    height: 30px;
+}
+
+.gothic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.divider-line {
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-color) 20%,
+        var(--accent-color) 80%,
+        transparent
+    );
+    margin: 0 1rem;
+}
+
+.gothic-divider i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    transition: all var(--transition-normal);
+}
+
+.gothic-divider:hover i {
+    color: var(--primary-color);
+    transform: scale(1.2);
 }
 
 /* ===== RESET & BASE STYLES ===== */
@@ -71,8 +153,9 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     color: var(--text-light);
-    background-color: var(--background-dark);
+    background: var(--gradient-dark);
     min-height: 100vh;
+    letter-spacing: 0.02em;
 }
 
 img {
@@ -213,14 +296,63 @@ nav ul li a.active {
 .hero {
     padding: var(--spacing-xxl) 0;
     text-align: center;
-    background-image: linear-gradient(120deg, #6a1017, #a50516);
+    background: var(--gradient-primary);
     color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add gothic mist effect */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(128, 0, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(45, 0, 54, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+    animation: mistFlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes mistFlow {
+    0% { opacity: 0.5; transform: translateX(-5%) translateY(0); }
+    100% { opacity: 0.8; transform: translateX(5%) translateY(0); }
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: var(--spacing-md);
     color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(128, 0, 0, 0.3),
+                 -2px -2px 4px rgba(45, 0, 54, 0.3);
+    letter-spacing: 0.05em;
+}
+
+/* Add gothic icon styling */
+h2 i {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    opacity: 0.8;
+    transition: all var(--transition-normal);
+}
+
+h2:hover i {
+    color: var(--primary-color);
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* Enhanced button styling */
+.btn i {
+    margin-right: 0.5rem;
+    transition: transform var(--transition-normal);
+}
+
+.btn:hover i {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .hero p {
@@ -349,11 +481,67 @@ nav ul li a.active {
     flex-direction: column;
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    background-color: #1a1a1a;
-    border: 1px solid #333;
+    box-shadow: var(--shadow-gothic);
+    transition: all var(--transition-normal);
+    background: var(--gradient-dark);
+    border: var(--border-gothic);
     height: 100%;
+    position: relative;
+    padding: 4px;
+}
+
+.event-card-inner {
+    position: relative;
+    height: 100%;
+    background: var(--gradient-dark);
+    border-radius: calc(var(--border-radius-md) - 4px);
+    overflow: hidden;
+}
+
+/* Gothic corner decorations */
+.event-card::before,
+.event-card::after,
+.event-card-inner::before,
+.event-card-inner::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--accent-color);
+    opacity: 0.6;
+    transition: all var(--transition-normal);
+}
+
+.event-card::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.event-card::after { top: 0; right: 0; border-left: none; border-bottom: none; }
+.event-card-inner::before { bottom: 0; left: 0; border-right: none; border-top: none; }
+.event-card-inner::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.event-card:hover::before,
+.event-card:hover::after,
+.event-card:hover .event-card-inner::before,
+.event-card:hover .event-card-inner::after {
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+    border-color: var(--primary-color);
+}
+
+/* Add gothic card effect */
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        rgba(128, 0, 0, 0.05) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(45, 0, 54, 0.05) 100%
+    );
+    pointer-events: none;
 }
 
 .event-card:hover {
@@ -377,21 +565,52 @@ nav ul li a.active {
 
 .event-card-category {
     display: inline-block;
-    background-color: var(--primary-light);
+    background: var(--gradient-primary);
     color: var(--text-light);
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 2px 8px;
+    padding: 4px 12px;
     border-radius: var(--border-radius-sm);
     margin-bottom: var(--spacing-xs);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-gothic);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+}
+
+.event-card:hover .event-card-category::before {
+    transform: translateX(100%);
 }
 
 .event-card-title {
     font-size: 1.25rem;
     margin-bottom: var(--spacing-xs);
     line-height: 1.3;
+    font-family: var(--font-heading);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.event-card:hover .event-card-title {
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(128, 0, 0, 0.3);
 }
 
 .event-card-date, .event-card-location {
@@ -439,10 +658,32 @@ nav ul li a.active {
 
 /* ===== PERFORM CTA ===== */
 .perform-cta {
-    background-color: #6a1017;
+    background: var(--gradient-primary);
     color: var(--text-light);
     padding: var(--spacing-xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add gothic mist effect to CTA */
+.perform-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 50%, rgba(128, 0, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(45, 0, 54, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: ctaMistFlow 15s ease-in-out infinite alternate;
+}
+
+@keyframes ctaMistFlow {
+    0% { opacity: 0.6; transform: translateX(-3%) translateY(0); }
+    100% { opacity: 0.9; transform: translateX(3%) translateY(0); }
 }
 
 .perform-cta h2 {
@@ -460,7 +701,22 @@ nav ul li a.active {
 /* ===== ABOUT SECTION ===== */
 .about-section {
     padding: var(--spacing-xl) 0;
-    background-color: #0c0505;
+    background: var(--gradient-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 40% 50%, rgba(128, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 60% 50%, rgba(45, 0, 54, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .about-section h2 {
@@ -475,9 +731,27 @@ nav ul li a.active {
 
 /* ===== FOOTER ===== */
 footer {
-    background-color: #000000;
+    background: var(--gradient-dark);
     color: var(--text-light);
     padding: var(--spacing-xl) 0 var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        rgba(128, 0, 0, 0.05) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(45, 0, 54, 0.05) 100%
+    );
+    pointer-events: none;
 }
 
 .footer-content {
@@ -549,7 +823,7 @@ footer {
 
 /* ===== DARK THEME ===== */
 body.dark-theme {
-    background-color: var(--background-dark);
+    background: var(--gradient-dark);
     color: var(--text-light);
 }
 
@@ -588,12 +862,13 @@ body.dark-theme {
 .dark-theme .calendar-section,
 .dark-theme .about-section,
 .dark-theme .featured-events {
-    background-color: #0c0505;
+    background: var(--gradient-dark);
 }
 
 .dark-theme .event-card {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
+    background: var(--gradient-dark);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-gothic);
 }
 
 .dark-theme .btn-secondary {
