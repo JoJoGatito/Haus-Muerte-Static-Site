@@ -3,7 +3,7 @@ class AdminPanel {
         this.githubToken = localStorage.getItem('github_token');
         this.octokit = null;
         this.repo = {
-            owner: 'yordan-hristov', // TODO: Replace with your GitHub username
+            owner: 'yordan-hristov',
             repo: 'Haus-Muerte-Static-Site',
             path: 'data/events.json'
         };
@@ -21,13 +21,12 @@ class AdminPanel {
         
         if (this.githubToken) {
             this.initializeGitHub();
-            this.showAdminPanel();
         }
     }
 
     setupEventListeners() {
-        // Auth buttons
-        document.getElementById('github-login').addEventListener('click', () => this.handleLogin());
+        // Auth form submission
+        document.getElementById('login-form').addEventListener('submit', (e) => this.handleLogin(e));
         document.getElementById('logout').addEventListener('click', () => this.handleLogout());
 
         // Navigation
@@ -50,21 +49,24 @@ class AdminPanel {
     }
 
     async initializeGitHub() {
-        this.octokit = new Octokit({
-            auth: this.githubToken
-        });
-        
         try {
+            this.octokit = new Octokit({
+                auth: this.githubToken
+            });
+            
             // Test the token by making a simple API call
             await this.octokit.rest.users.getAuthenticated();
+            this.showAdminPanel();
             await this.loadData();
         } catch (error) {
+            console.error('GitHub initialization error:', error);
             this.handleLogout();
             this.showError('Invalid GitHub token. Please try again.');
         }
     }
 
-    handleLogin() {
+    handleLogin(e) {
+        e.preventDefault();
         const token = document.getElementById('github-token').value.trim();
         if (!token) {
             this.showError('Please enter a GitHub token');
@@ -82,9 +84,21 @@ class AdminPanel {
     }
 
     showAdminPanel() {
+        if (!this.loginSection || !this.adminPanel) {
+            console.error('Required DOM elements not found');
+            return;
+        }
+        
         this.loginSection.classList.add('hidden');
         this.adminPanel.classList.remove('hidden');
-        this.loadData();
+        
+        // Show events section by default
+        document.querySelectorAll('.content-section').forEach(section => section.classList.add('hidden'));
+        this.eventsSection.classList.remove('hidden');
+        
+        // Set events button as active
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.nav-btn[data-section="events"]').classList.add('active');
     }
 
     handleNavigation(e) {
@@ -101,15 +115,28 @@ class AdminPanel {
 
     async loadData() {
         try {
-            const response = await this.octokit.repos.getContent(this.repo);
+            const response = await this.octokit.rest.repos.getContent({
+                owner: this.repo.owner,
+                repo: this.repo.repo,
+                path: this.repo.path
+            });
+            
+            if (!response.data || !response.data.content) {
+                throw new Error('No content received from GitHub');
+            }
+
             const content = JSON.parse(atob(response.data.content));
             
+            if (!content.events || !content.rehearsals || !content.defaultPerformers) {
+                throw new Error('Invalid data structure');
+            }
+
             this.renderEvents(content.events);
             this.renderRehearsals(content.rehearsals);
             this.renderPerformers(content.defaultPerformers);
         } catch (error) {
-            this.showError('Failed to load data');
-            console.error(error);
+            console.error('Data loading error:', error);
+            this.showError('Failed to load data: ' + error.message);
         }
     }
 
@@ -170,21 +197,36 @@ class AdminPanel {
 
     async saveData(data) {
         try {
+            // Validate data structure before saving
+            if (!data.events || !data.rehearsals || !data.defaultPerformers) {
+                throw new Error('Invalid data structure');
+            }
+
             const content = btoa(JSON.stringify(data, null, 2));
-            const currentFile = await this.octokit.repos.getContent(this.repo);
+            const currentFile = await this.octokit.rest.repos.getContent({
+                owner: this.repo.owner,
+                repo: this.repo.repo,
+                path: this.repo.path
+            });
             
-            await this.octokit.repos.createOrUpdateFileContents({
-                ...this.repo,
+            if (!currentFile.data || !currentFile.data.sha) {
+                throw new Error('Failed to get current file data');
+            }
+
+            await this.octokit.rest.repos.createOrUpdateFileContents({
+                owner: this.repo.owner,
+                repo: this.repo.repo,
+                path: this.repo.path,
                 message: 'Update events and performers',
                 content: content,
                 sha: currentFile.data.sha
             });
 
             this.showSuccess('Changes saved successfully');
-            this.loadData();
+            await this.loadData(); // Reload data to show updated content
         } catch (error) {
-            this.showError('Failed to save changes');
-            console.error(error);
+            console.error('Save error:', error);
+            this.showError('Failed to save changes: ' + error.message);
         }
     }
 
