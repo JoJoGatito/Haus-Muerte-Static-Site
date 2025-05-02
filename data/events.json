@@ -18,7 +18,25 @@
         "phone": "(555) 123-4567",
         "website": "https://www.crimsonballroom.com",
         "websiteLabel": "crimsonballroom.com"
-      }
+      },
+      "performers": [
+        {
+          "name": "Morticia Blackwood",
+          "confirmed": true
+        },
+        {
+          "name": "Lord Ravencroft",
+          "confirmed": false
+        },
+        {
+          "name": "The Midnight Strings Quartet",
+          "confirmed": true
+        },
+        {
+          "name": "Madam Vesper",
+          "confirmed": false
+        }
+      ]
     },
     {
       "id": 2,
@@ -38,7 +56,70 @@
         "phone": "(555) 987-6543",
         "website": "https://www.ravenstheater.com",
         "websiteLabel": "ravenstheater.com"
-      }
+      },
+      "performers": [
+        {
+          "name": "Lilith DuNoir",
+          "confirmed": true
+        },
+        {
+          "name": "The Shadow Sisters",
+          "confirmed": false
+        },
+        {
+          "name": "Viktor the Macabre",
+          "confirmed": true
+        },
+        {
+          "name": "Raven's Wing Dance Ensemble",
+          "confirmed": false
+        }
+      ]
     }
+  ],
+  "rehearsals": [
+    {
+      "id": "rehearsal-1",
+      "title": "Gothic Masquerade Rehearsal",
+      "date": "2025-06-14",
+      "time": "14:00-18:00",
+      "location": "The Crimson Ballroom"
+    },
+    {
+      "id": "rehearsal-2",
+      "title": "Gothic Masquerade Final Run",
+      "date": "2025-06-20",
+      "time": "16:00-20:00",
+      "location": "The Crimson Ballroom"
+    },
+    {
+      "id": "rehearsal-3",
+      "title": "Nocturnal Cabaret Rehearsal",
+      "date": "2025-09-06",
+      "time": "15:00-19:00",
+      "location": "The Raven's Theater"
+    },
+    {
+      "id": "rehearsal-4",
+      "title": "Nocturnal Cabaret Final Run",
+      "date": "2025-09-12",
+      "time": "16:00-20:00",
+      "location": "The Raven's Theater"
+    }
+  ],
+  "defaultPerformers": [
+    "Morticia Blackwood",
+    "Lord Ravencroft",
+    "Lilith DuNoir",
+    "Viktor the Macabre",
+    "The Shadow Sisters",
+    "Madam Vesper",
+    "The Midnight Strings Quartet",
+    "Raven's Wing Dance Ensemble",
+    "Dr. Grimm",
+    "Lady Nightshade",
+    "The Phantom Ensemble",
+    "Isabella von Darkness",
+    "The Crimson Performers"
   ]
 }

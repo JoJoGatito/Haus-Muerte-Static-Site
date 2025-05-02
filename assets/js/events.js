@@ -66,6 +66,19 @@ function createEventCard(event) {
     const card = document.createElement('div');
     card.classList.add('event-card');
     
+    // Get confirmed performers
+    const storedData = localStorage.getItem('hausMuertePerformers');
+    const performerData = storedData ? JSON.parse(storedData) : {};
+    const confirmedPerformers = [];
+    
+    if (performerData[event.id]?.performers) {
+        for (const [performer, confirmed] of Object.entries(performerData[event.id].performers)) {
+            if (confirmed) {
+                confirmedPerformers.push(performer);
+            }
+        }
+    }
+    
     // Format date
     const eventDate = new Date(event.date);
     const formattedDate = eventDate.toLocaleDateString('en-US', {
@@ -91,6 +104,17 @@ function createEventCard(event) {
                 </p>
                 <p class="event-card-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
                 <p class="event-card-description">${event.shortDescription}</p>
+                ${confirmedPerformers.length > 0 ? `
+                <div class="event-performers gothic-frame">
+                    <h4><i class="fas fa-theater-masks"></i> Featured Performers</h4>
+                    <div class="gothic-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-skull"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="performer-names">${confirmedPerformers.join(' • ')}</p>
+                </div>
+                ` : ''}
                 <div class="event-card-actions">
                     <span class="event-card-price">${event.price === 0 ? 'Free' : '$' + event.price}</span>
                     <a href="${event.slug}.html" class="event-card-link">Enter the Darkness <i class="fas fa-skull"></i></a>

@@ -166,6 +166,49 @@
 
 /* Dark Theme Styles */
 /* Gothic Event Card Enhancements */
+
+/* Event Performers Section */
+.event-performers {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-color);
+    position: relative;
+}
+
+.event-performers::before,
+.event-performers::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--accent-color);
+    opacity: 0.6;
+}
+
+.event-performers::before { top: 5px; left: 5px; border-right: none; border-bottom: none; }
+.event-performers::after { top: 5px; right: 5px; border-left: none; border-bottom: none; }
+
+.event-performers h4 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.event-performers .gothic-divider {
+    margin: var(--spacing-sm) 0;
+}
+
+.performer-names {
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-style: italic;
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    line-height: 1.6;
+}
 .event-card {
     position: relative;
     padding: 4px;
