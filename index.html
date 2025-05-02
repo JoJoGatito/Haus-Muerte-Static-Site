@@ -10,9 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&family=EB+Garamond:wght@400;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/calendar.css">
     <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark-theme">
@@ -71,14 +69,28 @@
             </div>
         </section>
         
-        <section class="calendar-section">
+        <section class="upcoming-event-section">
             <div class="container">
                 <h2>
                     <i class="fas fa-moon"></i>
-                    Event Calendar
+                    Next Event
                     <i class="fas fa-moon"></i>
                 </h2>
-                <div id="calendar"></div>
+                <div class="upcoming-event-card">
+                    <div class="event-image">
+                        <img src="assets/Images/events/gothic-masquerade.jpg" alt="Dark Elegance: A Gothic Masquerade">
+                    </div>
+                    <div class="event-details">
+                        <h3>Dark Elegance: A Gothic Masquerade</h3>
+                        <div class="event-meta">
+                            <p><i class="fas fa-calendar"></i> June 21, 2025</p>
+                            <p><i class="fas fa-clock"></i> 8:00 PM - 2:00 AM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> The Crimson Ballroom</p>
+                        </div>
+                        <p class="event-description">An enchanting evening of dark elegance, featuring gothic music, theatrical performances, and mystical entertainment.</p>
+                        <a href="events/gothic-masquerade.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -154,8 +166,6 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/calendar.js"></script>
 </body>
 </html>

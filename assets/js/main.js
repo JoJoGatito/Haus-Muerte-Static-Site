@@ -66,76 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Load featured events on the homepage
-    loadFeaturedEvents();
 });
-
-/**
- * Fetches and displays featured events on the homepage
- */
-function loadFeaturedEvents() {
-    const featuredContainer = document.getElementById('featured-events-container');
-    
-    if (featuredContainer) {
-        fetch('data/events.json')
-            .then(response => response.json())
-            .then(data => {
-                // Filter featured events and limit to 3
-                const featuredEvents = data.events
-                    .filter(event => event.featured)
-                    .slice(0, 3);
-                
-                if (featuredEvents.length > 0) {
-                    featuredEvents.forEach(event => {
-                        featuredContainer.appendChild(createEventCard(event));
-                    });
-                } else {
-                    featuredContainer.innerHTML = '<p class="text-center">No featured events at this time.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading featured events:', error);
-                featuredContainer.innerHTML = '<p class="text-center">Failed to load events. Please try again later.</p>';
-            });
-    }
-}
-
-/**
- * Creates an event card element
- * @param {Object} event - The event data
- * @return {HTMLElement} The event card element
- */
-function createEventCard(event) {
-    const card = document.createElement('div');
-    card.classList.add('event-card');
-    
-    // Format date
-    const eventDate = new Date(event.date);
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
-    
-    // Create card content
-    card.innerHTML = `
-        <img src="${event.image}" alt="${event.title}" class="event-card-image">
-        <div class="event-card-content">
-            <span class="event-card-category ${event.category.toLowerCase()}">${event.category}</span>
-            <h3 class="event-card-title">${event.title}</h3>
-            <p class="event-card-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</p>
-            <p class="event-card-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
-            <p class="event-card-description">${event.shortDescription}</p>
-            <div class="event-card-actions">
-                <span class="event-card-price">${event.price === 0 ? 'Free' : '$' + event.price}</span>
-                <a href="events/${event.slug}.html" class="event-card-link">View Details <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    `;
-    
-    return card;
-}
 
 /**
  * Formats a date object into a readable string

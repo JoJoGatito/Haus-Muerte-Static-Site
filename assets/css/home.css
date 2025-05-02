@@ -150,37 +150,84 @@
     margin-right: auto;
 }
 
-/* FC Calendar customization for dark theme */
-.dark-theme .fc {
-    --fc-page-bg-color: #0c0505;
-    --fc-border-color: #333333;
-    --fc-neutral-bg-color: #0c0505;
-    --fc-neutral-text-color: var(--text-light);
-    --fc-button-text-color: var(--text-light);
-    --fc-button-bg-color: #a50516;
-    --fc-button-border-color: #a50516;
-    --fc-button-hover-bg-color: #6a1017;
-    --fc-button-hover-border-color: #6a1017;
-    --fc-button-active-bg-color: #6a1017;
-    --fc-button-active-border-color: #6a1017;
-    --fc-event-bg-color: #a50516;
-    --fc-event-border-color: #a50516;
-    --fc-event-text-color: var(--text-light);
-    --fc-today-bg-color: rgba(165, 5, 22, 0.1);
-}
-
-.dark-theme .fc-col-header,
-.dark-theme .fc-daygrid-body,
-.dark-theme .fc-scrollgrid {
+/* Upcoming Event Section */
+.upcoming-event-section {
+    padding: var(--spacing-xl) 0;
     background-color: #0c0505;
 }
 
-.dark-theme .fc .fc-daygrid-day.fc-day-today {
-    background-color: rgba(165, 5, 22, 0.1);
+.upcoming-event-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    margin-top: var(--spacing-lg);
 }
 
-.dark-theme .fc .fc-daygrid-day-number {
+.upcoming-event-card .event-image {
+    flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.upcoming-event-card .event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.upcoming-event-card:hover .event-image img {
+    transform: scale(1.05);
+}
+
+.upcoming-event-card .event-details {
+    flex: 0 0 60%;
+    padding: var(--spacing-lg);
+}
+
+.upcoming-event-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
     color: var(--text-light);
+}
+
+.upcoming-event-card .event-meta {
+    margin-bottom: var(--spacing-md);
+}
+
+.upcoming-event-card .event-meta p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+.upcoming-event-card .event-meta i {
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.upcoming-event-card .event-description {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-light);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .upcoming-event-card {
+        flex-direction: column;
+    }
+    
+    .upcoming-event-card .event-image {
+        height: 250px;
+    }
+    
+    .upcoming-event-card h3 {
+        font-size: 1.5rem;
+    }
 }
 
 /* Responsive styles */
