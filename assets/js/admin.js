@@ -25,37 +25,46 @@ class AdminPanel {
     }
 
     setupEventListeners() {
-        // Auth form submission
-        document.getElementById('login-form').addEventListener('submit', (e) => this.handleLogin(e));
-        document.getElementById('logout').addEventListener('click', () => this.handleLogout());
+        console.log('Setting up event listeners');
+        
+        // Logout button
+        const logoutButton = document.getElementById('logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => this.handleLogout());
+        }
 
-        // Navigation
+        // Navigation and other buttons
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('click', (e) => this.handleNavigation(e));
         });
 
-        // Add buttons
-        document.getElementById('add-event').addEventListener('click', () => this.showEventModal());
-        document.getElementById('add-rehearsal').addEventListener('click', () => this.showRehearsalModal());
-        document.getElementById('add-performer').addEventListener('click', () => this.showPerformerModal());
+        document.getElementById('add-event')?.addEventListener('click', () => this.showEventModal());
+        document.getElementById('add-rehearsal')?.addEventListener('click', () => this.showRehearsalModal());
+        document.getElementById('add-performer')?.addEventListener('click', () => this.showPerformerModal());
 
-        // Modal close buttons
         document.querySelectorAll('.modal-close').forEach(btn => {
             btn.addEventListener('click', (e) => this.closeModal(e.target.closest('.modal')));
         });
 
-        // Form submissions
-        document.getElementById('event-form').addEventListener('submit', (e) => this.handleEventSubmit(e));
+        document.getElementById('event-form')?.addEventListener('submit', (e) => this.handleEventSubmit(e));
     }
 
     async initializeGitHub() {
         try {
-            this.octokit = new Octokit({
-                auth: this.githubToken
+            console.log('Testing GitHub token...');
+            // Test the token by making a simple API call
+            const response = await fetch('https://api.github.com/user', {
+                headers: {
+                    'Authorization': `token ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
             });
             
-            // Test the token by making a simple API call
-            await this.octokit.rest.users.getAuthenticated();
+            if (!response.ok) {
+                throw new Error(`GitHub API error: ${response.status}`);
+            }
+            
+            console.log('Token validated successfully');
             this.showAdminPanel();
             await this.loadData();
         } catch (error) {
@@ -65,17 +74,33 @@ class AdminPanel {
         }
     }
 
-    handleLogin(e) {
-        e.preventDefault();
-        const token = document.getElementById('github-token').value.trim();
-        if (!token) {
-            this.showError('Please enter a GitHub token');
-            return;
+    // Removed handleLogin since it's now handled in the click event
+
+    async handleLoginClick() {
+        console.log('Login click handler executing');
+        try {
+            const tokenInput = document.getElementById('github-token');
+            console.log('Token input found:', !!tokenInput);
+            
+            if (!tokenInput) {
+                throw new Error('Token input not found');
+            }
+            
+            const token = tokenInput.value.trim();
+            console.log('Token length:', token.length);
+            
+            if (!token) {
+                throw new Error('Please enter a GitHub token');
+            }
+            
+            console.log('Storing token and initializing GitHub');
+            localStorage.setItem('github_token', token);
+            this.githubToken = token;
+            await this.initializeGitHub();
+        } catch (error) {
+            console.error('Login click handler error:', error);
+            this.showError(error.message);
         }
-        
-        localStorage.setItem('github_token', token);
-        this.githubToken = token;
-        this.initializeGitHub();
     }
 
     handleLogout() {
@@ -115,25 +140,37 @@ class AdminPanel {
 
     async loadData() {
         try {
-            const response = await this.octokit.rest.repos.getContent({
-                owner: this.repo.owner,
-                repo: this.repo.repo,
-                path: this.repo.path
+            console.log('Fetching data from GitHub...');
+            const response = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                headers: {
+                    'Authorization': `token ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
             });
             
-            if (!response.data || !response.data.content) {
+            if (!response.ok) {
+                throw new Error(`GitHub API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Data received from GitHub');
+            
+            if (!data.content) {
                 throw new Error('No content received from GitHub');
             }
 
-            const content = JSON.parse(atob(response.data.content));
+            const content = JSON.parse(atob(data.content));
+            console.log('Content parsed:', content);
             
             if (!content.events || !content.rehearsals || !content.defaultPerformers) {
                 throw new Error('Invalid data structure');
             }
 
+            console.log('Rendering data...');
             this.renderEvents(content.events);
             this.renderRehearsals(content.rehearsals);
             this.renderPerformers(content.defaultPerformers);
+            console.log('Data rendered successfully');
         } catch (error) {
             console.error('Data loading error:', error);
             this.showError('Failed to load data: ' + error.message);
@@ -202,25 +239,42 @@ class AdminPanel {
                 throw new Error('Invalid data structure');
             }
 
-            const content = btoa(JSON.stringify(data, null, 2));
-            const currentFile = await this.octokit.rest.repos.getContent({
-                owner: this.repo.owner,
-                repo: this.repo.repo,
-                path: this.repo.path
+            // Get current file to get the SHA
+            const getResponse = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                headers: {
+                    'Authorization': `token ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
             });
             
-            if (!currentFile.data || !currentFile.data.sha) {
+            if (!getResponse.ok) {
+                throw new Error(`GitHub API error: ${getResponse.status}`);
+            }
+
+            const currentFile = await getResponse.json();
+            if (!currentFile.sha) {
                 throw new Error('Failed to get current file data');
             }
 
-            await this.octokit.rest.repos.createOrUpdateFileContents({
-                owner: this.repo.owner,
-                repo: this.repo.repo,
-                path: this.repo.path,
-                message: 'Update events and performers',
-                content: content,
-                sha: currentFile.data.sha
+            // Update the file
+            const content = btoa(JSON.stringify(data, null, 2));
+            const updateResponse = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Update events and performers',
+                    content: content,
+                    sha: currentFile.sha
+                })
             });
+
+            if (!updateResponse.ok) {
+                throw new Error(`GitHub API error: ${updateResponse.status}`);
+            }
 
             this.showSuccess('Changes saved successfully');
             await this.loadData(); // Reload data to show updated content
@@ -272,6 +326,9 @@ class AdminPanel {
 }
 
 // Initialize admin panel when the page loads
+console.log('Admin script loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
     new AdminPanel();
 });
