@@ -1,5 +1,16 @@
 class AdminPanel {
     constructor() {
+        // Configuration version - change this when repo config changes
+        this.configVersion = '1.0';
+        
+        // Check if config version matches
+        const storedVersion = localStorage.getItem('config_version');
+        if (storedVersion !== this.configVersion) {
+            console.log('Config version mismatch, clearing storage');
+            localStorage.clear();
+            localStorage.setItem('config_version', this.configVersion);
+        }
+
         this.githubToken = localStorage.getItem('github_token');
         this.octokit = null;
         this.repo = {
@@ -154,8 +165,20 @@ class AdminPanel {
     }
 
     handleLogout() {
-        localStorage.removeItem('github_token');
-        window.location.reload();
+        // Clear all stored data
+        localStorage.clear();
+        
+        // Clear any cached resources
+        if (window.caches) {
+            caches.keys().then(names => {
+                names.forEach(name => {
+                    caches.delete(name);
+                });
+            });
+        }
+        
+        // Force reload from server
+        window.location.href = window.location.href.split('?')[0] + '?v=' + Date.now();
     }
 
     showAdminPanel() {
