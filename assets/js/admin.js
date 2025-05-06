@@ -64,16 +64,42 @@ class AdminPanel {
             // Test the token by making a simple API call
             const response = await fetch('https://api.github.com/user', {
                 headers: {
-                    'Authorization': `token ${this.githubToken}`,
+                    'Authorization': `Bearer ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
             
             if (!response.ok) {
-                throw new Error(`GitHub API error: ${response.status}`);
+                const errorData = await response.json().catch(() => ({}));
+                console.error('GitHub API Response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorData
+                });
+                throw new Error(`GitHub API error: ${response.status} - ${response.statusText}`);
             }
             
-            console.log('Token validated successfully');
+            const userData = await response.json();
+            console.log('Token validated successfully for user:', userData.login);
+            
+            // Verify repository access
+            console.log('Verifying repository access...');
+            const repoResponse = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            
+            if (!repoResponse.ok) {
+                console.error('Repository access failed:', {
+                    status: repoResponse.status,
+                    statusText: repoResponse.statusText
+                });
+                throw new Error(`Repository access error: ${repoResponse.status} - ${repoResponse.statusText}`);
+            }
+            
+            console.log('Repository access verified');
             this.showAdminPanel();
             await this.loadData();
         } catch (error) {
@@ -157,20 +183,33 @@ class AdminPanel {
 
     async loadData() {
         try {
-            console.log('Fetching data from GitHub...');
-            const response = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+            const filePath = `${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`;
+            console.log('Fetching data from GitHub...', {
+                owner: this.repo.owner,
+                repo: this.repo.repo,
+                path: this.repo.path
+            });
+            
+            const response = await fetch(`https://api.github.com/repos/${filePath}`, {
                 headers: {
-                    'Authorization': `token ${this.githubToken}`,
+                    'Authorization': `Bearer ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
             
             if (!response.ok) {
-                throw new Error(`GitHub API error: ${response.status}`);
+                const errorData = await response.json().catch(() => ({}));
+                console.error('GitHub API Response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorData,
+                    requestedPath: filePath
+                });
+                throw new Error(`GitHub API error: ${response.status} - ${response.statusText}`);
             }
 
             const data = await response.json();
-            console.log('Data received from GitHub');
+            console.log('Data received from GitHub for path:', this.repo.path);
             
             if (!data.content) {
                 throw new Error('No content received from GitHub');
@@ -257,28 +296,44 @@ class AdminPanel {
             }
 
             // Get current file to get the SHA
-            const getResponse = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+            const filePath = `${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`;
+            console.log('Getting current file data...', {
+                owner: this.repo.owner,
+                repo: this.repo.repo,
+                path: this.repo.path
+            });
+            
+            const getResponse = await fetch(`https://api.github.com/repos/${filePath}`, {
                 headers: {
-                    'Authorization': `token ${this.githubToken}`,
+                    'Authorization': `Bearer ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
             
             if (!getResponse.ok) {
-                throw new Error(`GitHub API error: ${getResponse.status}`);
+                const errorData = await getResponse.json().catch(() => ({}));
+                console.error('GitHub API Response:', {
+                    status: getResponse.status,
+                    statusText: getResponse.statusText,
+                    error: errorData,
+                    requestedPath: filePath
+                });
+                throw new Error(`GitHub API error: ${getResponse.status} - ${getResponse.statusText}`);
             }
 
             const currentFile = await getResponse.json();
+            console.log('Current file data retrieved');
             if (!currentFile.sha) {
                 throw new Error('Failed to get current file data');
             }
 
             // Update the file
             const content = btoa(JSON.stringify(data, null, 2));
-            const updateResponse = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+            console.log('Updating file...');
+            const updateResponse = await fetch(`https://api.github.com/repos/${filePath}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token ${this.githubToken}`,
+                    'Authorization': `Bearer ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
@@ -290,8 +345,17 @@ class AdminPanel {
             });
 
             if (!updateResponse.ok) {
-                throw new Error(`GitHub API error: ${updateResponse.status}`);
+                const errorData = await updateResponse.json().catch(() => ({}));
+                console.error('GitHub API Response:', {
+                    status: updateResponse.status,
+                    statusText: updateResponse.statusText,
+                    error: errorData,
+                    requestedPath: filePath
+                });
+                throw new Error(`GitHub API error: ${updateResponse.status} - ${updateResponse.statusText}`);
             }
+            
+            console.log('File updated successfully');
 
             this.showSuccess('Changes saved successfully');
             await this.loadData(); // Reload data to show updated content
