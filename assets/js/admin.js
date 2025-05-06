@@ -3,7 +3,7 @@ class AdminPanel {
         this.githubToken = localStorage.getItem('github_token');
         this.octokit = null;
         this.repo = {
-            owner: 'yordan-hristov',
+            owner: 'JoJoGatito',
             repo: 'Haus-Muerte-Static-Site',
             path: 'data/events.json'
         };
