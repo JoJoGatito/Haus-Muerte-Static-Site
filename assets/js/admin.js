@@ -27,6 +27,15 @@ class AdminPanel {
     setupEventListeners() {
         console.log('Setting up event listeners');
         
+        // GitHub login button
+        const loginButton = document.getElementById('github-login');
+        if (loginButton) {
+            console.log('Login button found, adding click handler');
+            loginButton.addEventListener('click', () => this.handleLoginClick());
+        } else {
+            console.error('Login button not found');
+        }
+        
         // Logout button
         const logoutButton = document.getElementById('logout');
         if (logoutButton) {
@@ -88,15 +97,23 @@ class AdminPanel {
             
             const token = tokenInput.value.trim();
             console.log('Token length:', token.length);
+            console.log('Token format check:', token.startsWith('ghp_') ? 'valid prefix' : 'invalid prefix');
             
             if (!token) {
                 throw new Error('Please enter a GitHub token');
             }
             
+            if (!token.startsWith('ghp_')) {
+                throw new Error('Invalid token format. Token should start with "ghp_"');
+            }
+            
             console.log('Storing token and initializing GitHub');
             localStorage.setItem('github_token', token);
             this.githubToken = token;
+            
+            console.log('Starting GitHub initialization...');
             await this.initializeGitHub();
+            console.log('GitHub initialization completed');
         } catch (error) {
             console.error('Login click handler error:', error);
             this.showError(error.message);
