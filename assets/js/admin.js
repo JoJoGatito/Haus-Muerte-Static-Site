@@ -55,7 +55,14 @@ class AdminPanel {
             btn.addEventListener('click', (e) => this.closeModal(e.target.closest('.modal')));
         });
 
-        document.getElementById('event-form')?.addEventListener('submit', (e) => this.handleEventSubmit(e));
+        const eventForm = document.getElementById('event-form');
+        if (eventForm) {
+            eventForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('Form submitted');
+                await this.handleEventSubmit(e);
+            });
+        }
     }
 
     async initializeGitHub() {
@@ -250,7 +257,12 @@ class AdminPanel {
 
         // Add event listeners for edit and delete buttons
         eventsList.querySelectorAll('.edit-event').forEach(btn => {
-            btn.addEventListener('click', (e) => this.editEvent(e.target.closest('.list-item').dataset.id));
+            btn.addEventListener('click', async (e) => {
+                console.log('Edit button clicked');
+                const eventId = e.target.closest('.list-item').dataset.id;
+                console.log('Event ID:', eventId);
+                await this.editEvent(eventId);
+            });
         });
 
         eventsList.querySelectorAll('.delete-event').forEach(btn => {
@@ -369,7 +381,15 @@ class AdminPanel {
         const modal = document.getElementById('event-modal');
         const form = document.getElementById('event-form');
 
+        // Reset form and remove any previous event ID
+        form.reset();
+        form.removeAttribute('data-event-id');
+
         if (event) {
+            console.log('Populating form with event:', event);
+            // Store event ID for editing
+            form.setAttribute('data-event-id', event.id);
+            
             // Populate form for editing
             form.elements['event-title'].value = event.title;
             form.elements['event-date'].value = event.date;
@@ -378,8 +398,6 @@ class AdminPanel {
             form.elements['event-location'].value = event.location;
             form.elements['event-description'].value = event.description;
             form.elements['event-price'].value = event.price;
-        } else {
-            form.reset();
         }
 
         modal.classList.remove('hidden');
@@ -403,6 +421,101 @@ class AdminPanel {
         messageDiv.textContent = message;
         this.adminPanel.insertBefore(messageDiv, this.adminPanel.firstChild);
         setTimeout(() => messageDiv.remove(), 3000);
+    }
+
+    async handleEventSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const eventId = form.getAttribute('data-event-id');
+        
+        try {
+            console.log('Handling event submit. Event ID:', eventId);
+            
+            // Get current data
+            const response = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const content = JSON.parse(atob(data.content));
+
+            // Create new event object from form
+            const eventData = {
+                id: eventId || Date.now().toString(),
+                title: form.elements['event-title'].value,
+                date: form.elements['event-date'].value,
+                startTime: form.elements['event-start'].value,
+                endTime: form.elements['event-end'].value,
+                location: form.elements['event-location'].value,
+                description: form.elements['event-description'].value,
+                price: parseFloat(form.elements['event-price'].value)
+            };
+
+            if (eventId) {
+                // Update existing event
+                const eventIndex = content.events.findIndex(e => e.id === eventId);
+                if (eventIndex === -1) {
+                    throw new Error('Event not found');
+                }
+                content.events[eventIndex] = eventData;
+            } else {
+                // Add new event
+                content.events.push(eventData);
+            }
+
+            // Save updated data
+            await this.saveData(content);
+            
+            // Close modal and show success message
+            this.closeModal(document.getElementById('event-modal'));
+            this.showSuccess(`Event ${eventId ? 'updated' : 'created'} successfully`);
+            
+        } catch (error) {
+            console.error('Event submit error:', error);
+            this.showError(`Failed to ${eventId ? 'update' : 'create'} event: ` + error.message);
+        }
+    }
+
+    async editEvent(eventId) {
+        try {
+            console.log('Editing event with ID:', eventId);
+            
+            // Get current data from GitHub
+            const response = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch event data: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const content = JSON.parse(atob(data.content));
+            
+            // Find the event to edit
+            const event = content.events.find(e => e.id === eventId);
+            console.log('Found event:', event);
+            
+            if (!event) {
+                throw new Error('Event not found');
+            }
+
+            // Show the modal with event data
+            this.showEventModal(event);
+        } catch (error) {
+            console.error('Edit event error:', error);
+            this.showError('Failed to edit event: ' + error.message);
+        }
     }
 }
 
