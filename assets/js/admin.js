@@ -242,62 +242,97 @@ class AdminPanel {
 
     renderEvents(events) {
         const eventsList = document.getElementById('events-list');
-        eventsList.innerHTML = events.map(event => `
-            <div class="list-item" data-id="${event.id}">
-                <div>
-                    <h3>${event.title}</h3>
-                    <p>${event.date} | ${event.startTime} - ${event.endTime}</p>
+        eventsList.innerHTML = events.map(event => {
+            // Ensure all required properties exist
+            const safeEvent = {
+                id: event.id || '',
+                title: event.title || 'Untitled Event',
+                date: event.date || 'TBD',
+                startTime: event.startTime || '--:--',
+                endTime: event.endTime || '--:--'
+            };
+            
+            return `
+                <div class="list-item" data-id="${safeEvent.id}">
+                    <div>
+                        <h3>${safeEvent.title}</h3>
+                        <p>${safeEvent.date} | ${safeEvent.startTime} - ${safeEvent.endTime}</p>
+                    </div>
+                    <div>
+                        <button class="btn-secondary edit-event">Edit</button>
+                        <button class="btn-danger delete-event">Delete</button>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn-secondary edit-event">Edit</button>
-                    <button class="btn-danger delete-event">Delete</button>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         // Add event listeners for edit and delete buttons
+        // Add event listeners for edit and delete buttons
+        const boundEditHandler = async (e) => {
+            e.preventDefault();
+            console.log('Edit button clicked');
+            const eventId = e.target.closest('.list-item').dataset.id;
+            console.log('Event ID:', eventId);
+            await this.editEvent(eventId);
+        };
+
+        const boundDeleteHandler = async (e) => {
+            e.preventDefault();
+            const eventId = e.target.closest('.list-item').dataset.id;
+            console.log('Delete button clicked for event:', eventId);
+            await this.deleteEvent(eventId);
+        };
+
         eventsList.querySelectorAll('.edit-event').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
-                console.log('Edit button clicked');
-                const eventId = e.target.closest('.list-item').dataset.id;
-                console.log('Event ID:', eventId);
-                await this.editEvent(eventId);
-            });
+            btn.addEventListener('click', boundEditHandler.bind(this));
         });
 
         eventsList.querySelectorAll('.delete-event').forEach(btn => {
-            btn.addEventListener('click', (e) => this.deleteEvent(e.target.closest('.list-item').dataset.id));
+            btn.addEventListener('click', boundDeleteHandler.bind(this));
         });
     }
 
     renderRehearsals(rehearsals) {
         const rehearsalsList = document.getElementById('rehearsals-list');
-        rehearsalsList.innerHTML = rehearsals.map(rehearsal => `
-            <div class="list-item" data-id="${rehearsal.id}">
-                <div>
-                    <h3>${rehearsal.title}</h3>
-                    <p>${rehearsal.date} | ${rehearsal.time}</p>
+        rehearsalsList.innerHTML = rehearsals.map(rehearsal => {
+            const safeRehearsal = {
+                id: rehearsal.id || '',
+                title: rehearsal.title || 'Untitled Rehearsal',
+                date: rehearsal.date || 'TBD',
+                time: rehearsal.time || '--:--'
+            };
+            
+            return `
+                <div class="list-item" data-id="${safeRehearsal.id}">
+                    <div>
+                        <h3>${safeRehearsal.title}</h3>
+                        <p>${safeRehearsal.date} | ${safeRehearsal.time}</p>
+                    </div>
+                    <div>
+                        <button class="btn-secondary edit-rehearsal">Edit</button>
+                        <button class="btn-danger delete-rehearsal">Delete</button>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn-secondary edit-rehearsal">Edit</button>
-                    <button class="btn-danger delete-rehearsal">Delete</button>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     renderPerformers(performers) {
         const performersList = document.getElementById('performers-list');
-        performersList.innerHTML = performers.map(performer => `
-            <div class="list-item">
-                <div>
-                    <h3>${performer}</h3>
+        performersList.innerHTML = performers.map(performer => {
+            const safePerformer = performer || 'Unknown Performer';
+            
+            return `
+                <div class="list-item">
+                    <div>
+                        <h3>${safePerformer}</h3>
+                    </div>
+                    <div>
+                        <button class="btn-danger delete-performer">Delete</button>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn-danger delete-performer">Delete</button>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     async saveData(data) {
@@ -447,16 +482,22 @@ class AdminPanel {
             const content = JSON.parse(atob(data.content));
 
             // Create new event object from form
+            // Safely get form values with defaults
             const eventData = {
                 id: eventId || Date.now().toString(),
-                title: form.elements['event-title'].value,
-                date: form.elements['event-date'].value,
-                startTime: form.elements['event-start'].value,
-                endTime: form.elements['event-end'].value,
-                location: form.elements['event-location'].value,
-                description: form.elements['event-description'].value,
-                price: parseFloat(form.elements['event-price'].value)
+                title: form.elements['event-title']?.value?.trim() || 'Untitled Event',
+                date: form.elements['event-date']?.value || new Date().toISOString().split('T')[0],
+                startTime: form.elements['event-start']?.value || '00:00',
+                endTime: form.elements['event-end']?.value || '23:59',
+                location: form.elements['event-location']?.value?.trim() || 'TBD',
+                description: form.elements['event-description']?.value?.trim() || '',
+                price: parseFloat(form.elements['event-price']?.value || '0')
             };
+
+            // Validate required fields
+            if (!eventData.title || !eventData.date) {
+                throw new Error('Title and date are required');
+            }
 
             if (eventId) {
                 // Update existing event
@@ -480,6 +521,38 @@ class AdminPanel {
         } catch (error) {
             console.error('Event submit error:', error);
             this.showError(`Failed to ${eventId ? 'update' : 'create'} event: ` + error.message);
+        }
+    }
+
+    async deleteEvent(eventId) {
+        try {
+            console.log('Deleting event with ID:', eventId);
+            
+            // Get current data
+            const response = await fetch(`https://api.github.com/repos/${this.repo.owner}/${this.repo.repo}/contents/${this.repo.path}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const content = JSON.parse(atob(data.content));
+
+            // Remove the event
+            content.events = content.events.filter(e => e.id !== eventId);
+
+            // Save updated data
+            await this.saveData(content);
+            this.showSuccess('Event deleted successfully');
+            
+        } catch (error) {
+            console.error('Delete event error:', error);
+            this.showError('Failed to delete event: ' + error.message);
         }
     }
 
