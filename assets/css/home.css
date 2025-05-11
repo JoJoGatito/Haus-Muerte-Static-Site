@@ -113,11 +113,50 @@
 
 .event-meta p {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--spacing-sm);
     color: var(--text-light);
     font-size: 1.1rem;
     opacity: 0.9;
+}
+
+.location-info {
+    position: relative;
+}
+
+.location-info i {
+    margin-top: 0.3rem;
+}
+
+.venue-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.venue-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.venue-address {
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.venue-address a {
+    color: var(--text-light);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.venue-address a:hover {
+    color: var(--primary-color);
+    opacity: 1;
+    text-decoration: underline;
 }
 
 .performer-list {
