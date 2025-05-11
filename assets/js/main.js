@@ -3,7 +3,55 @@
  * Contains common functionality used across the site
  */
 
+// Throttle function to limit execution rate
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced parallax effect for featured image
+    const featuredImage = document.querySelector('.featured-image-wrapper');
+    if (featuredImage) {
+        let ticking = false;
+        let lastScrollY = window.pageYOffset;
+        
+        const updateParallax = () => {
+            const scrolled = window.pageYOffset;
+            const speed = 0.4; // Adjust for smoother movement
+            const yPos = -(scrolled * speed);
+            
+            // Use transform3d for better performance
+            featuredImage.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            
+            // Add scale effect based on scroll position
+            const scale = Math.max(1, 1 + (scrolled * 0.0005));
+            featuredImage.querySelector('.featured-image').style.transform = `scale(${scale})`;
+            
+            ticking = false;
+        };
+
+        // Throttled scroll handler using requestAnimationFrame
+        const onScroll = throttle(() => {
+            lastScrollY = window.pageYOffset;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, 10);
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
     // Mobile navigation toggle
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('nav');

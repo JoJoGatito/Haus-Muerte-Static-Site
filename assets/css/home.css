@@ -6,11 +6,12 @@
 /* CSS Variables for Featured Event */
 :root {
   --featured-event-height: 80vh;
-  --overlay-color-primary: rgba(106, 16, 23, 0.9);
-  --overlay-color-secondary: rgba(0, 0, 0, 0.85);
-  --content-bg: rgba(26, 26, 26, 0.8);
-  --title-size: 3.5rem;
-  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --overlay-color-primary: rgba(106, 16, 23, 0.85);
+  --overlay-color-secondary: rgba(0, 0, 0, 0.95);
+  --content-bg: rgba(20, 20, 20, 0.9);
+  --title-size: 4rem;
+  --text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  --glow-effect: 0 0 20px rgba(106, 16, 23, 0.4);
 }
 
 /* Featured Event Hero Section */
@@ -67,15 +68,15 @@
 }
 
 .event-content-box {
-    width: 40%;
+    width: 45%;
     margin-left: auto;
     padding: var(--spacing-xl);
-    background: rgba(26, 26, 26, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--content-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    animation: slideIn 0.8s ease-out forwards;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), var(--glow-effect);
+    animation: slideIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .event-title {
@@ -113,32 +114,45 @@
 
 .performer-list {
     margin-bottom: var(--spacing-xl);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
 }
 
 .performer-list a {
     color: var(--text-light);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-block;
-    margin-right: var(--spacing-md);
+    padding: 0.5rem 1rem;
+    background: rgba(106, 16, 23, 0.2);
+    border: 1px solid rgba(106, 16, 23, 0.3);
+    border-radius: var(--border-radius-md);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
 }
 
 .performer-list a:hover {
-    color: var(--primary-color);
-    transform: translateX(5px);
+    color: var(--text-light);
+    background: rgba(106, 16, 23, 0.4);
+    border-color: rgba(106, 16, 23, 0.6);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-effect);
 }
 
 .cta-button {
     display: inline-block;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-xl);
     background: var(--primary-color);
     color: var(--text-light);
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-md);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-family: 'UnifrakturMaguntia', serif;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     animation: pulse 2s infinite;
+    box-shadow: var(--glow-effect);
 }
 
 .cta-button:hover {
