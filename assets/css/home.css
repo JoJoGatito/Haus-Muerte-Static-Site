@@ -3,7 +3,7 @@
    Contains styles for the homepage and featured event section
 */
 
-/* CSS Variables for Featured Event */
+/* CSS Variables */
 :root {
   --featured-event-height: 80vh;
   --overlay-color-primary: rgba(106, 16, 23, 0.85);
@@ -12,6 +12,14 @@
   --title-size: 4rem;
   --text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
   --glow-effect: 0 0 20px rgba(106, 16, 23, 0.4);
+  
+  /* Spacing Variables */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 6rem;
 }
 
 /* Featured Event Hero Section */
@@ -184,6 +192,26 @@
 }
 
 /* Responsive Design */
+/* Desktop-First Media Queries */
+@media (min-width: 1400px) {
+    .about-section .container {
+        max-width: 1200px;
+    }
+    
+    .about-section p {
+        font-size: 1.6rem;
+    }
+    
+    .perform-cta h2 {
+        font-size: 4rem;
+    }
+    
+    .perform-cta p {
+        font-size: 1.6rem;
+        max-width: 800px;
+    }
+}
+
 @media (max-width: 1199px) {
     .event-content-box {
         width: 50%;
@@ -312,23 +340,92 @@
 }
 
 /* Other sections preserved from original */
-.perform-cta {
-    background-color: #6a1017;
-    color: var(--text-light);
-    padding: var(--spacing-xl) 0;
+/* About Section */
+.about-section {
+    padding: var(--spacing-xxl) 0;
+    background: linear-gradient(to bottom, #0c0505, #1a0a0a);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+}
+
+.about-section h2 {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 3rem;
     text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-light);
+    text-shadow: var(--text-shadow);
+}
+
+.about-section p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-light);
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Perform CTA Section */
+.perform-cta {
+    background: linear-gradient(135deg, #6a1017, #450a0f);
+    color: var(--text-light);
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.perform-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(106, 16, 23, 0.3) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .perform-cta h2 {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 3.5rem;
     color: var(--text-light);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    text-shadow: var(--text-shadow);
 }
 
 .perform-cta p {
-    margin-bottom: var(--spacing-lg);
-    max-width: 600px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.9;
+}
+
+.perform-cta .btn-primary {
+    font-size: 1.3rem;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--glow-effect);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.perform-cta .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), var(--glow-effect);
 }
 
 /* Upcoming Event Section */
