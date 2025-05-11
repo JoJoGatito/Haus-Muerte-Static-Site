@@ -22,10 +22,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="events/index.html">Events</a></li>
                     <li><a href="apply/index.html">Perform</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -37,75 +35,48 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="gothic-frame">
-                    <h1>Discover Dark Elegance</h1>
-                    <div class="gothic-divider">
-                        <span class="divider-line"></span>
-                        <i class="fas fa-skull"></i>
-                        <span class="divider-line"></span>
-                    </div>
-                    <p>Experience unique events curated by Haus Muerte</p>
-                    <a href="events/index.html" class="btn btn-primary">
-                        <i class="fas fa-spider"></i>
-                        <span>Browse Events</span>
-                    </a>
+        <!-- FEATURED EVENT INSTRUCTIONS
+        To update the featured event:
+        1. Update the image src and alt text
+        2. Update the event title
+        3. Update date, time, and location
+        4. Update the description
+        5. Update the performer list
+        -->
+        <section class="featured-event hero-section" aria-labelledby="event-title">
+            <div class="hero-split">
+                <div class="hero-image" style="background-image: url('assets/Images/events/gothic-masquerade.jpg')">
+                    <img src="assets/Images/events/gothic-masquerade.jpg"
+                         alt="Gaymer Draglesque"
+                         loading="lazy"
+                         class="visually-hidden">
                 </div>
-            </div>
-        </section>
-        
-        <!-- New Featured Image Section -->
-        <section class="featured-image-section">
-            <div class="container">
-                <div class="featured-image-wrapper">
-                    <img src="assets/Images/IMG_2275.jpg" alt="Featured event" class="featured-image">
-                    <div class="image-overlay">
-                        <h2>Enter the Realm of Shadows</h2>
-                        <p>Experience the darkness with Haus Muerte</p>
-                        <a href="events/index.html" class="btn btn-outline-light">See Details</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="upcoming-event-section">
-            <div class="container">
-                <h2>
-                    <i class="fas fa-moon"></i>
-                    Next Event
-                    <i class="fas fa-moon"></i>
-                </h2>
-                <div class="upcoming-event-card">
-                    <div class="event-image">
-                        <img src="assets/Images/events/gothic-masquerade.jpg" alt="Dark Elegance: A Gothic Masquerade">
-                    </div>
-                    <div class="event-details">
-                        <h3>Dark Elegance: A Gothic Masquerade</h3>
+                <div class="hero-content">
+                    <article class="event-details">
+                        <h2 id="event-title" class="event-title">Gaymer Draglesque</h2>
                         <div class="event-meta">
-                            <p><i class="fas fa-calendar"></i> June 21, 2025</p>
-                            <p><i class="fas fa-clock"></i> 8:00 PM - 2:00 AM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> The Crimson Ballroom</p>
+                            <time class="date" datetime="2025-06-21">Friday, June 21, 2025</time>
+                            <time class="time" datetime="21:00-00:00">9:00 PM - 12:00 AM</time>
+                            <address class="location">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Beer Run
+                            </address>
                         </div>
-                        <p class="event-description">An enchanting evening of dark elegance, featuring gothic music, theatrical performances, and mystical entertainment.</p>
-                        <a href="events/gothic-masquerade.html" class="btn btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="featured-events">
-            <div class="container">
-                <h2>
-                    <i class="fas fa-ghost"></i>
-                    Featured Events
-                    <i class="fas fa-ghost"></i>
-                </h2>
-                <div class="events-grid" id="featured-events-container">
-                    <!-- Events will be loaded dynamically from events.json -->
-                </div>
-                <div class="text-center">
-                    <a href="events/index.html" class="btn btn-secondary">View All Events</a>
+                        <div class="event-description">
+                            <p>Join us for an enchanting evening of sexy video game culture in 4k 60fps!</p>
+                        </div>
+                        <div class="event-performers">
+                            <h3>Featured Performers</h3>
+                            <ul class="performers-list">
+                                <li><a href="#" class="performer-link">Zaddy Zoki</a></li>
+                                <li><a href="#" class="performer-link">GoGoGeorgous</a></li>
+                                <li><a href="#" class="performer-link">Forrest Ken</a></li>
+                                <li><a href="#" class="performer-link">Ms DeeLight</a></li>
+                                <li><a href="#" class="performer-link">Zoey Astarte</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-cta">Get Tickets</a>
+                    </article>
                 </div>
             </div>
         </section>
