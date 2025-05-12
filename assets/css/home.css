@@ -32,11 +32,11 @@
 }
 
 .featured-image-wrapper {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--featured-event-height);
+    height: 100%;
     z-index: 1;
 }
 
