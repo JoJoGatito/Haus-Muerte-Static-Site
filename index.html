@@ -53,13 +53,17 @@
             <div class="event-content">
                 <div class="event-content-box">
                     <h2 id="event-title" class="event-title">Gaymer Draglesque</h2>
+                    <div class="flyer-thumbnail-container">
+                        <button class="flyer-thumbnail-button" aria-label="View event flyer">
+                            <img src="assets/Images/events/HM-Flyer.webp" alt="Event flyer for Gaymer Draglesque" class="flyer-thumbnail">
+                            <span class="thumbnail-caption">Click to view full flyer</span>
+                        </button>
+                    </div>
                     <div class="event-meta">
                         <p>
-                            <i class="fas fa-calendar" aria-hidden="true"></i>
                             <time datetime="2025-06-21">Friday, June 21, 2025</time>
                         </p>
                         <p class="time-info">
-                            <i class="fas fa-clock" aria-hidden="true"></i>
                             <div class="time-details">
                                 <div class="doors-time">
                                     <span class="time-label">Doors</span>
@@ -72,7 +76,6 @@
                             </div>
                         </p>
                         <p class="location-info">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div class="venue-details">
                                 <span class="venue-name">The Beer Run</span>
                                 <address class="venue-address">
@@ -157,6 +160,14 @@
             </div>
         </div>
     </footer>
+
+    <div id="flyer-modal" class="modal" aria-hidden="true" role="dialog" aria-label="Event flyer">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close flyer">&times;</button>
+            <img src="assets/Images/events/HM-Flyer.webp" alt="Event flyer for Gaymer Draglesque" class="flyer-full">
+        </div>
+    </div>
 
     <script src="assets/js/main.js"></script>
 </body>
