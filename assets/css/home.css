@@ -406,6 +406,34 @@
     opacity: 1;
 }
 
+/* Workshop Promo Section */
+.workshop-promo {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-color-dark);
+    text-align: center;
+}
+
+.workshop-promo h2 {
+    font-family: 'Pirata One', cursive;
+    margin-bottom: var(--spacing-md);
+}
+
+.workshop-promo h2 i {
+    color: var(--accent-color);
+    margin: 0 var(--spacing-sm);
+}
+
+.workshop-promo p {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+}
+
+.workshop-promo .btn {
+    font-size: 1.2rem;
+    padding: var(--spacing-md) var(--spacing-lg);
+}
 /* Modal Styles */
 .modal {
     display: none;

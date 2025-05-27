@@ -1,0 +1,169 @@
+/* Workshop Page Styles */
+.workshop-section {
+    padding: var(--spacing-xl) 0;
+    min-height: calc(100vh - 300px);
+    background-color: var(--bg-color);
+}
+
+.workshop-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    background-color: var(--content-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), var(--glow-effect);
+}
+
+.workshop-content h1 {
+    font-family: 'Pirata One', cursive;
+    font-size: 3rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: var(--text-shadow);
+}
+
+.workshop-meta {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--bg-color-dark);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.workshop-meta p {
+    margin-bottom: var(--spacing-sm);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.time-details, .venue-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.workshop-time {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.time-label {
+    color: var(--accent-color);
+    font-weight: 600;
+    min-width: 60px;
+}
+
+.venue-name {
+    font-family: 'Crimson Text', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.venue-address a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.venue-address a:hover {
+    color: var(--accent-color);
+}
+
+.workshop-details {
+    margin-bottom: var(--spacing-xl);
+}
+
+.workshop-details p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.signup-form {
+    padding: var(--spacing-lg);
+    background-color: var(--bg-color-dark);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.signup-form h2 {
+    font-family: 'Pirata One', cursive;
+    font-size: 2rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: var(--text-shadow);
+}
+
+#form-container {
+    min-height: 400px;
+    background-color: var(--content-bg);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+/* Form States */
+.form-loading {
+    text-align: center;
+    padding: var(--spacing-xl);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.thank-you-message {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background-color: var(--bg-color-dark);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.thank-you-message h3 {
+    font-family: 'Pirata One', cursive;
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+    text-shadow: var(--text-shadow);
+}
+
+.thank-you-message p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .workshop-content {
+        padding: var(--spacing-md);
+    }
+
+    .workshop-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .signup-form {
+        padding: var(--spacing-md);
+    }
+
+    .workshop-time {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .venue-address a {
+        transition: none;
+    }
+}
