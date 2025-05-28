@@ -101,23 +101,27 @@
     text-shadow: var(--text-shadow);
 }
 
-#form-container {
-    position: relative;
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: var(--content-bg);
-    border-radius: var(--border-radius-sm);
+.form-container {
+    background-color: #1a1a1a;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
+    margin: 0 auto;
+    max-width: 900px;
 }
 
-#form-container iframe {
+.form-container iframe {
     width: 100%;
+    height: 800px;
     border: none;
-    height: 600px; /* Initial height matching JS */
     background-color: transparent;
-    transition: height 0.3s ease;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .form-container iframe {
+        height: 600px;
+    }
 }
 
 /* Form States */

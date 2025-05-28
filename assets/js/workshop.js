@@ -1,6 +1,4 @@
 // Workshop page functionality
-let formInitialized = false;
-
 document.addEventListener('DOMContentLoaded', function() {
     if (formInitialized) {
         console.log('Form already initialized, skipping...');
@@ -15,14 +13,30 @@ document.addEventListener('DOMContentLoaded', function() {
     function createForm() {
         console.log('Creating form...');
         
+        // Form customization configuration
+        const formId = '1FAIpQLSdnNGFAkgZuc84sPHKkfhDMAoM4c34lxmwJsYDzXHLxet2YGw';
+        const theme = {
+            backgroundColor: '0A0000', // --background-dark
+            headerColor: '800000',     // --primary-color
+            textColor: 'F0F0F0',       // --text-light
+        };
+
+        // Create customized form URL
+        const customFormUrl = `https://docs.google.com/forms/d/e/${formId}/viewform?embedded=true&usp=pp_url` +
+            `&theme=dark` +
+            `&bc=${theme.backgroundColor}` +
+            `&tc=${theme.textColor}` +
+            `&ac=${theme.headerColor}`;
+
         // Log any existing iframes in the form container
         const existingIframes = formContainer.getElementsByTagName('iframe');
         console.log('Existing iframes in form container:', existingIframes.length);
         for (let i = 0; i < existingIframes.length; i++) {
             console.log('Existing iframe source:', existingIframes[i].src);
         }
+
         const formEmbed = document.createElement('iframe');
-        formEmbed.setAttribute('src', 'https://docs.google.com/forms/d/e/1FAIpQLSfXK7H_8kk4zXksXVCUSzDh1YwbvJ-GpS_2F9-t7rDRkqmuLQ/viewform?embedded=true');
+        formEmbed.setAttribute('src', customFormUrl);
         formEmbed.setAttribute('width', '100%');
         formEmbed.setAttribute('height', '600px'); // Initial height
         formEmbed.setAttribute('frameborder', '0');

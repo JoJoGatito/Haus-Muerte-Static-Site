@@ -115,47 +115,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Modal functionality for event flyer
+    // Modal functionality for event flyer
     const modal = document.getElementById('flyer-modal');
-    const modalOverlay = modal.querySelector('.modal-overlay');
-    const modalClose = modal.querySelector('.modal-close');
-    const thumbnailButton = document.querySelector('.flyer-thumbnail-button');
-    
-    // Open modal when thumbnail is clicked
-    thumbnailButton.addEventListener('click', function() {
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-        modal.setAttribute('aria-hidden', 'false');
-        modalClose.focus(); // Focus the close button for accessibility
-    });
-    
-    // Function to close modal
-    function closeModal() {
-        modal.classList.remove('open');
-        document.body.style.overflow = ''; // Restore scrolling
-        modal.setAttribute('aria-hidden', 'true');
-        thumbnailButton.focus(); // Return focus to thumbnail
+    if (modal) {
+        const modalOverlay = modal.querySelector('.modal-overlay');
+        const modalClose = modal.querySelector('.modal-close');
+        const thumbnailButton = document.querySelector('.flyer-thumbnail-button');
+        
+        if (thumbnailButton && modalClose && modalOverlay) {
+            // Open modal when thumbnail is clicked
+            thumbnailButton.addEventListener('click', function() {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                modal.setAttribute('aria-hidden', 'false');
+                modalClose.focus(); // Focus the close button for accessibility
+            });
+            
+            // Function to close modal
+            function closeModal() {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+                modal.setAttribute('aria-hidden', 'true');
+                thumbnailButton.focus(); // Return focus to thumbnail
+            }
+            
+            // Close modal when close button is clicked
+            modalClose.addEventListener('click', closeModal);
+            
+            // Close modal when clicking on overlay
+            modalOverlay.addEventListener('click', closeModal);
+            
+            // Close modal when pressing Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+            
+            // Trap focus within modal when open (accessibility)
+            modal.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab' && modal.classList.contains('open')) {
+                    e.preventDefault();
+                    modalClose.focus();
+                }
+            });
+        }
     }
-    
-    // Close modal when close button is clicked
-    modalClose.addEventListener('click', closeModal);
-    
-    // Close modal when clicking on overlay
-    modalOverlay.addEventListener('click', closeModal);
-    
-    // Close modal when pressing Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('open')) {
-            closeModal();
-        }
-    });
-    
-    // Trap focus within modal when open (accessibility)
-    modal.addEventListener('keydown', function(e) {
-        if (e.key === 'Tab' && modal.classList.contains('open')) {
-            e.preventDefault();
-            modalClose.focus();
-        }
-    });
 });
 
 /**
