@@ -1,22 +1,3 @@
-// Load Tweakpane from CDN with fallback
-let Pane;
-try {
-  // Try to dynamically import Tweakpane
-  import("https://cdn.jsdelivr.net/npm/tweakpane@4.0.4/dist/tweakpane.min.js")
-    .then(module => {
-      Pane = module.Pane;
-      window.Pane = Pane;
-      // Initialize after import
-      setTimeout(initTweakpane, 500);
-    })
-    .catch(err => {
-      console.warn("Tweakpane import failed:", err);
-      // Continue without Tweakpane
-    });
-} catch (e) {
-  console.warn("ES module imports may not be supported:", e);
-  // Continue without Tweakpane
-}
 
 // Register GSAP plugins
 gsap.registerPlugin(CustomEase);
@@ -28,8 +9,8 @@ let imageUrls = [];
 for (let i = 1; i <= 101; i++) {
   // Store both thumbnail and full resolution paths
   imageUrls.push({
-    thumbnail: `assets/Images/gallery/QOW/thumbnail/QOW${i}.webp`,
-    full: `assets/Images/gallery/QOW/full/QOW${i}.webp`
+    thumbnail: `assets/Images/gallery/QOW/Thumbnail/QOWlr${i}.webp`,
+    full: `assets/Images/gallery/QOW/Full/QOW${i}.webp`
   });
 }
 
@@ -51,8 +32,11 @@ function shuffleArray(array, seed) {
   return array;
 }
 
-// Shuffle the image URLs with a fixed seed (42 is arbitrary, can be any number)
-imageUrls = shuffleArray(imageUrls, 42);
+// Track the next image to load for sequential loading
+let nextImageIndex = 0;
+
+// Original shuffled approach (commented out for sequential loading)
+// imageUrls = shuffleArray(imageUrls, 42);
 
 // Add error handling for image loading
 function handleImageError(img) {
@@ -73,7 +57,7 @@ function handleImageError(img) {
 const container = document.querySelector(".container");
 const canvas = document.getElementById("canvas");
 const overlay = document.getElementById("overlay");
-// Settings object for Tweakpane
+// Gallery settings
 const settings = {
   // Item sizes
   baseWidth: 400,
@@ -168,187 +152,6 @@ let canDrag = true;
 let originalPosition = null;
 let expandedItem = null;
 let overlayAnimation = null;
-let paneInstance = null;
-// Initialize Tweakpane
-function initTweakpane() {
-  // Wait for Pane to be available (imported via ES module)
-  if (!window.Pane) {
-    setTimeout(initTweakpane, 100);
-    return;
-  }
-  // Create the pane with a title and make it visible even when collapsed
-  paneInstance = new window.Pane({
-    title: "Gallery Settings",
-    expanded: false
-  });
-  // Make sure the pane is visible by styling its container
-  const paneElement = paneInstance.element;
-  paneElement.style.position = "fixed";
-  paneElement.style.top = "10px";
-  paneElement.style.right = "10px";
-  paneElement.style.zIndex = "10000";
-  // Item size settings
-  const sizeFolder = paneInstance.addFolder({
-    title: "Item Sizes",
-    expanded: false
-  });
-  sizeFolder
-    .addBinding(settings, "baseWidth", {
-      min: 100,
-      max: 600,
-      step: 10
-    })
-    .on("change", updateSettings);
-  sizeFolder
-    .addBinding(settings, "smallHeight", {
-      min: 100,
-      max: 400,
-      step: 10
-    })
-    .on("change", updateSettings);
-  sizeFolder
-    .addBinding(settings, "largeHeight", {
-      min: 100,
-      max: 600,
-      step: 10
-    })
-    .on("change", updateSettings);
-  // Layout settings
-  const layoutFolder = paneInstance.addFolder({
-    title: "Layout",
-    expanded: false
-  });
-  layoutFolder
-    .addBinding(settings, "itemGap", {
-      min: 0,
-      max: 100,
-      step: 5
-    })
-    .on("change", updateSettings);
-  layoutFolder
-    .addBinding(settings, "bufferZone", {
-      min: 1,
-      max: 5,
-      step: 0.5
-    })
-    .on("change", updateSettings);
-  // Style settings
-  const styleFolder = paneInstance.addFolder({
-    title: "Style",
-    expanded: false
-  });
-  styleFolder
-    .addBinding(settings, "borderRadius", {
-      min: 0,
-      max: 16,
-      step: 1
-    })
-    .on("change", updateBorderRadius);
-  // Item vignette settings
-  const itemVignetteFolder = paneInstance.addFolder({
-    title: "Item Vignette",
-    expanded: false
-  });
-  itemVignetteFolder
-    .addBinding(settings, "vignetteSize", {
-      min: 0,
-      max: 50,
-      step: 1
-    })
-    .on("change", updateVignetteSize);
-  // Page vignette settings - simplified to two controls
-  const pageVignetteFolder = paneInstance.addFolder({
-    title: "Page Vignette",
-    expanded: false
-  });
-  pageVignetteFolder
-    .addBinding(settings, "vignetteStrength", {
-      min: 0,
-      max: 1,
-      step: 0.05
-    })
-    .on("change", updatePageVignette);
-  pageVignetteFolder
-    .addBinding(settings, "vignetteSize", {
-      min: 0,
-      max: 500,
-      step: 10
-    })
-    .on("change", updatePageVignette);
-  // Overlay settings
-  const overlayFolder = paneInstance.addFolder({
-    title: "Overlay Animation",
-    expanded: false
-  });
-  overlayFolder.addBinding(settings, "overlayOpacity", {
-    min: 0,
-    max: 1,
-    step: 0.05
-  });
-  overlayFolder.addBinding(settings, "overlayEaseDuration", {
-    min: 0.2,
-    max: 2,
-    step: 0.1
-  });
-  // Animation settings
-  const animationFolder = paneInstance.addFolder({
-    title: "Animation",
-    expanded: false
-  });
-  animationFolder
-    .addBinding(settings, "hoverScale", {
-      min: 1,
-      max: 1.5,
-      step: 0.05
-    })
-    .on("change", updateHoverScale);
-  animationFolder.addBinding(settings, "expandedScale", {
-    min: 0.2,
-    max: 0.8,
-    step: 0.05
-  });
-  animationFolder.addBinding(settings, "dragEase", {
-    min: 0.01,
-    max: 0.2,
-    step: 0.01
-  });
-  animationFolder.addBinding(settings, "momentumFactor", {
-    min: 50,
-    max: 500,
-    step: 10
-  });
-  animationFolder.addBinding(settings, "zoomDuration", {
-    min: 0.2,
-    max: 1.5,
-    step: 0.1
-  });
-  // Add a button to reset the view
-  paneInstance
-    .addButton({
-      title: "Reset View"
-    })
-    .on("click", () => {
-      targetX = 0;
-      targetY = 0;
-    });
-  // Add keyboard shortcut for toggling the panel
-  window.addEventListener("keydown", (e) => {
-    // Toggle panel visibility with the 'h' key
-    if (e.key === "h" || e.key === "H") {
-      togglePaneVisibility();
-    }
-  });
-}
-// Function to toggle the panel visibility
-function togglePaneVisibility() {
-  if (!paneInstance) return;
-  const element = paneInstance.element;
-  if (element.style.display === "none") {
-    element.style.display = "";
-  } else {
-    element.style.display = "none";
-  }
-}
 // Update CSS variable for border radius
 function updateBorderRadius() {
   document.documentElement.style.setProperty(
@@ -525,20 +328,21 @@ function updateVisibleItems() {
       item.dataset.row = row;
       item.dataset.width = itemSize.width;
       item.dataset.height = itemSize.height;
-      // Calculate a consistent item number for this position
-      // This ensures the same position always shows the same content
-      const itemNum = Math.abs((row * columns + col) % itemCount);
       // Create image container for overflow control
       const imageContainer = document.createElement("div");
       imageContainer.className = "item-image-container";
+      
       // Create image
       const img = document.createElement("img");
-      const imageSet = imageUrls[itemNum % imageUrls.length];
+      
+      // Use sequential loading for images
+      const imageSet = imageUrls[nextImageIndex % imageUrls.length];
+      nextImageIndex++; // Increment counter
       // Use thumbnail for grid view
       img.src = imageSet.thumbnail;
       // Store full resolution path for later use
       img.dataset.fullRes = imageSet.full;
-      img.alt = `Image ${itemNum + 1}`;
+      img.alt = `Image ${nextImageIndex}`;
       img.onerror = () => handleImageError(img);
       imageContainer.appendChild(img);
       item.appendChild(imageContainer);
@@ -700,6 +504,11 @@ function animate() {
     currentX += (targetX - currentX) * ease;
     currentY += (targetY - currentY) * ease;
     canvas.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+    // Reset sequential counter when returning near start position
+    if (Math.abs(currentX) < 100 && Math.abs(currentY) < 100) {
+      nextImageIndex = 0;
+    }
     const now = Date.now();
     const distMoved = Math.sqrt(
       Math.pow(currentX - lastX, 2) + Math.pow(currentY - lastY, 2)
@@ -809,5 +618,3 @@ initializeStyles();
 applyResponsiveSettings();
 updateVisibleItems();
 animate();
-// Tweakpane is now initialized after import in our modified code above
-// No need to initialize it here again
