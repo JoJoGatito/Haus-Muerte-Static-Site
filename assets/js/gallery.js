@@ -65,7 +65,7 @@ const settings = {
   largeHeight: 500,
   itemGap: 65,
   hoverScale: 1.05,
-  expandedScale: 0.4, // Percentage of viewport width
+  expandedScale: 0.8, // Increased from 0.4 to 0.8 (80% of viewport width)
   dragEase: 0.075,
   momentumFactor: 200,
   bufferZone: 3,
@@ -86,7 +86,8 @@ const mobileSettings = {
   baseWidth: 210,
   smallHeight: 150,
   largeHeight: 270,
-  itemGap: 25
+  itemGap: 25,
+  expandedScale: 0.95 // Added expanded scale for mobile (95% of viewport width)
 };
 
 // Function to check if device is mobile based on screen width
@@ -102,12 +103,14 @@ function applyResponsiveSettings() {
     settings.smallHeight = mobileSettings.smallHeight;
     settings.largeHeight = mobileSettings.largeHeight;
     settings.itemGap = mobileSettings.itemGap;
+    settings.expandedScale = mobileSettings.expandedScale; // Apply mobile expanded scale
   } else {
     // Reset to desktop settings
     settings.baseWidth = 400;
     settings.smallHeight = 330;
     settings.largeHeight = 500;
     settings.itemGap = 65;
+    settings.expandedScale = 0.8; // Reset to desktop expanded scale
   }
   
   // Update the gallery with new settings
