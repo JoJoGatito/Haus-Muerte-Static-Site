@@ -350,7 +350,7 @@ function updateVisibleItems() {
       // Add click handler
       item.addEventListener("click", (e) => {
         if (mouseHasMoved || isDragging) return;
-        handleItemClick(item, itemNum);
+        handleItemClick(item);
       });
       canvas.appendChild(item);
       visibleItems.add(itemId);
@@ -368,15 +368,15 @@ function updateVisibleItems() {
   });
 }
 
-function handleItemClick(item, itemIndex) {
+function handleItemClick(item) {
   if (isExpanded) {
     if (expandedItem) closeExpandedItem();
   } else {
-    expandItem(item, itemIndex);
+    expandItem(item);
   }
 }
 
-function expandItem(item, itemIndex) {
+function expandItem(item) {
   isExpanded = true;
   activeItem = item;
   activeItemId = item.id;
@@ -404,43 +404,60 @@ function expandItem(item, itemIndex) {
   expandedItem.style.zIndex = "10000"; // Explicitly set z-index
   // Apply the same border radius as the items
   expandedItem.style.borderRadius = `var(--border-radius, 0px)`;
+  
+  // Create image and load it first to get natural dimensions
   const img = document.createElement("img");
+  
+  // Set up onload handler to get natural dimensions before animation
+  img.onload = () => {
+    // Get the natural dimensions of the full-resolution image
+    const naturalWidth = img.naturalWidth;
+    const naturalHeight = img.naturalHeight;
+    
+    // Store natural aspect ratio for resize events
+    expandedItem.dataset.naturalRatio = naturalHeight / naturalWidth;
+    
+    // Calculate target size preserving original image aspect ratio
+    const viewportWidth = window.innerWidth;
+    const targetWidth = viewportWidth * settings.expandedScale;
+    const targetHeight = targetWidth * (naturalHeight / naturalWidth);
+    
+    // Fade out other items with GSAP
+    document.querySelectorAll(".item").forEach((el) => {
+      if (el !== activeItem) {
+        gsap.to(el, {
+          opacity: 0,
+          duration: settings.overlayEaseDuration,
+          ease: "power2.inOut"
+        });
+      }
+    });
+    
+    // Animate to natural aspect ratio
+    gsap.fromTo(
+      expandedItem,
+      {
+        width: itemWidth,
+        height: itemHeight,
+        x: rect.left + itemWidth / 2 - window.innerWidth / 2,
+        y: rect.top + itemHeight / 2 - window.innerHeight / 2
+      },
+      {
+        width: targetWidth,
+        height: targetHeight,
+        x: 0,
+        y: 0,
+        duration: settings.zoomDuration, // Use the faster zoom duration
+        ease: "hop"
+      }
+    );
+  };
+  
+  // Set the source to trigger loading
   img.src = imgSrc;
   expandedItem.appendChild(img);
   expandedItem.addEventListener("click", closeExpandedItem);
   document.body.appendChild(expandedItem);
-  // Fade out other items with GSAP
-  document.querySelectorAll(".item").forEach((el) => {
-    if (el !== activeItem) {
-      gsap.to(el, {
-        opacity: 0,
-        duration: settings.overlayEaseDuration,
-        ease: "power2.inOut"
-      });
-    }
-  });
-  const viewportWidth = window.innerWidth;
-  const targetWidth = viewportWidth * settings.expandedScale;
-  // Maintain aspect ratio from original item
-  const aspectRatio = itemHeight / itemWidth;
-  const targetHeight = targetWidth * aspectRatio;
-  gsap.fromTo(
-    expandedItem,
-    {
-      width: itemWidth,
-      height: itemHeight,
-      x: rect.left + itemWidth / 2 - window.innerWidth / 2,
-      y: rect.top + itemHeight / 2 - window.innerHeight / 2
-    },
-    {
-      width: targetWidth,
-      height: targetHeight,
-      x: 0,
-      y: 0,
-      duration: settings.zoomDuration, // Use the faster zoom duration
-      ease: "hop"
-    }
-  );
 }
 
 function closeExpandedItem() {
@@ -588,11 +605,11 @@ window.addEventListener("resize", () => {
   if (isExpanded && expandedItem) {
     const viewportWidth = window.innerWidth;
     const targetWidth = viewportWidth * settings.expandedScale;
-    // Maintain aspect ratio
-    const originalWidth = originalPosition.width;
-    const originalHeight = originalPosition.height;
-    const aspectRatio = originalHeight / originalWidth;
-    const targetHeight = targetWidth * aspectRatio;
+    
+    // Use the natural aspect ratio stored in the dataset
+    const naturalRatio = parseFloat(expandedItem.dataset.naturalRatio) || 1;
+    const targetHeight = targetWidth * naturalRatio;
+    
     gsap.to(expandedItem, {
       width: targetWidth,
       height: targetHeight,
